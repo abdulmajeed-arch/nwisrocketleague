@@ -36,6 +36,8 @@
         .upset-badge { position: absolute; top: -10px; left: 20px; background: var(--upset); color: white; font-size: 0.55rem; font-family: var(--text-head); padding: 4px 10px; border-radius: 4px; z-index: 2; box-shadow: 0 0 10px rgba(255,0,123,0.4); }
         
         .match-label { font-size: 0.55rem; color: #444; position: absolute; top: 10px; right: 15px; font-family: var(--text-head); }
+        .time-badge { font-size: 0.6rem; color: var(--upcoming); margin-top: 10px; font-family: var(--text-head); text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
+        
         .match-container { display: flex; align-items: center; justify-content: space-around; margin-top: 10px; }
         .team-box { display: flex; flex-direction: column; align-items: center; flex: 1; }
         .team-name { font-family: var(--text-head); font-size: 0.85rem; font-weight: bold; }
@@ -46,13 +48,6 @@
         .win-chance-container { width: 100%; height: 4px; background: #111; margin-top: 15px; border-radius: 10px; display: flex; overflow: hidden; }
         .chance-fill { height: 100%; transition: 0.5s; }
         .chance-text { font-size: 0.6rem; color: #555; text-align: center; margin-top: 5px; font-family: var(--text-head); }
-
-        /* VOTING */
-        .poll-container { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .vote-btn { background: rgba(0,229,255,0.05); border: 1px solid rgba(0,229,255,0.2); color: var(--accent); font-family: var(--text-head); font-size: 0.6rem; padding: 6px 12px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
-        .vote-btn:hover { background: var(--accent); color: black; }
-        .vote-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-        .vote-count { font-size: 0.6rem; color: #555; font-family: var(--text-head); margin-top: 4px; }
 
         /* LEADERBOARD GRID */
         .stats-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 50px; }
@@ -147,7 +142,7 @@
             <div class="power-labels"><span id="labelTeamA">Team A</span><span>WIN PROBABILITY</span><span id="labelTeamB">Team B</span></div>
             <div class="power-bar-bg"><div id="barA" class="power-fill-left"></div><div id="barB" class="power-fill-right"></div></div>
         </div>
-        <div style="overflow-x: auto;"><table id="modalTable" style="width:100%"><thead><tr><th style="text-align: left;">PLAYER</th><th>G</th><th>A</th><th>S</th><th>D</th></tr></thead><tbody id="statBody"></tbody></table></div>
+        <div style="overflow-x: auto;"><table id="modalTable" style="width:100%"><thead><tr><th style="text-align: left;">PLAYER</th><th>GOALS</th><th>ASSISTS</th><th>SAVES</th><th>DEMOS</th></tr></thead><tbody id="statBody"></tbody></table></div>
     </div>
 </div>
 
@@ -171,17 +166,15 @@
         { id: 11, p1: "Zain Musab", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III" }
     ];
 
+    const matchTimes = {
+        "12-7": "Monday 8/3 - 12:00 PM",
+        "9-15": "Monday 8/3 - 2:30 PM",
+        "16-11": "Monday 8/3 - 4:00 PM",
+        "5-4": "Monday 8/3 - 4:30 PM",
+        "14-2": "Monday 8/3 - 6:30 PM"
+    };
+
     const rankValues = { "Grand Champion III": 19, "Grand Champion": 17, "Champion II": 15, "Champion I": 14, "Diamond I": 11, "Platinum III": 10, "Platinum II": 9, "Platinum": 8, "Gold III": 7, "Gold II": 6, "Gold I": 5, "Gold": 5, "Silver III": 4, "Silver I": 2, "Silver": 3, "Bronze III": 2, "Bronze I": 1, "Unranked": 3 };
-
-    const storedVotes = JSON.parse(localStorage.getItem('matchVotes') || '{}');
-
-    function castVote(teamId, matchId) {
-        if (localStorage.getItem(`voted_${matchId}`)) return;
-        storedVotes[teamId] = (storedVotes[teamId] || 0) + 1;
-        localStorage.setItem('matchVotes', JSON.stringify(storedVotes));
-        localStorage.setItem(`voted_${matchId}`, 'true');
-        location.reload(); 
-    }
 
     const rosterList = document.getElementById('roster-list');
     [...teams].sort((a,b) => a.id - b.id).forEach(t => {
@@ -207,10 +200,10 @@
     const grid = document.getElementById('bracket-grid');
     for (let i = 0; i < teams.length; i += 2) {
         const tA = teams[i], tB = teams[i+1];
-        const matchId = `m_${tA.id}_${tB.id}`;
-        const hasVoted = localStorage.getItem(`voted_${matchId}`);
         const pA = rankValues[tA.r1] + rankValues[tA.r2], pB = rankValues[tB.r1] + rankValues[tB.r2];
         const probA = Math.round((pA / (pA + pB)) * 100);
+        const timeKey = `${tA.id}-${tB.id}`;
+        const displayTime = matchTimes[timeKey] || "TBD";
         const isUpcoming = tA.id === 12;
         const isUpset = Math.abs(probA - 50) > 25;
 
@@ -220,7 +213,7 @@
         
         card.innerHTML = `
             ${isUpset ? '<div class="upset-badge">UPSET POTENTIAL</div>' : ''}
-            <span class="match-label ${isUpcoming ? 'upcoming-text' : ''}">${isUpcoming ? 'MATCH STARTS SOON' : 'Round of 16'}</span>
+            <span class="match-label">${isUpcoming ? 'MATCH STARTS SOON' : 'Round of 16'}</span>
             <div class="match-container">
                 <div class="team-box"><div class="team-name">Team ${tA.id}</div><div class="team-score">0</div></div>
                 <div class="vs-divider-text">VS</div>
@@ -231,16 +224,7 @@
                 <div class="chance-fill" style="background:#333; width:${100-probA}%"></div>
             </div>
             <div class="chance-text">${probA}% WIN PROBABILITY ${100-probA}%</div>
-            <div class="poll-container">
-                <div class="team-box">
-                    <button class="vote-btn" ${hasVoted ? 'disabled' : ''} onclick="event.stopPropagation(); castVote(${tA.id}, '${matchId}')">VOTE T${tA.id}</button>
-                    <div class="vote-count">${storedVotes[tA.id] || 0} VOTES</div>
-                </div>
-                <div class="team-box">
-                    <button class="vote-btn" ${hasVoted ? 'disabled' : ''} onclick="event.stopPropagation(); castVote(${tB.id}, '${matchId}')">VOTE T${tB.id}</button>
-                    <div class="vote-count">${storedVotes[tB.id] || 0} VOTES</div>
-                </div>
-            </div>
+            <div class="time-badge">${displayTime}</div>
         `;
         grid.appendChild(card);
     }
