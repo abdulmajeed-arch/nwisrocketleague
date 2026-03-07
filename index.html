@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NWIS Rocket League | Tournament Hub</title>
+    <title>NWIS Rocket League Tournament</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +35,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* MATCHUPS GRID */
         .matchup-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -83,7 +82,6 @@
             font-family: var(--text-head);
         }
 
-        /* INDIVIDUAL STATISTICS DASHBOARD */
         .stats-dashboard {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -115,19 +113,40 @@
         }
         .stat-val { font-weight: bold; color: var(--accent); font-family: var(--text-head); }
 
-        /* ROSTER TABLE */
         .teams-table-wrapper { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 50px; }
         table { width: 100%; border-collapse: collapse; }
         th { background: rgba(255,255,255,0.03); padding: 15px; text-align: left; font-size: 0.7rem; color: #555; text-transform: uppercase; }
         td { padding: 15px; border-top: 1px solid var(--border); font-size: 0.9rem; }
         .team-id-tag { color: var(--accent); font-family: var(--text-head); font-weight: bold; width: 80px; }
         .rank-pill { font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; background: rgba(0,229,255,0.05); color: var(--accent); border: 1px solid rgba(0,229,255,0.1); margin-left: 8px; font-weight: bold; }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #0a1116;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--accent);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 1.5rem; color: var(--accent); }
+        .stat-table th { color: var(--accent); text-align: center; }
+        .stat-table td { text-align: center; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>NWIS RL TOURNAMENT</h1>
+    <h1>NWIS Rocket League TOURNAMENT</h1>
     <p style="color: #444; letter-spacing: 5px; font-size: 0.8rem; margin-top: 10px;">PRO SERIES: ROUND OF 16</p>
 </header>
 
@@ -180,33 +199,35 @@
 </div>
 
 <script>
-    // 1. TEAM INFORMATION
+    // 1. TEAM INFORMATION (Locked matchups and Expanded Ranks)
     const teams = [
-        { id: 1, p1: "Ali Al Amoudi", r1: "GC III", p2: "Moath Birier", r2: "Unranked" },
-        { id: 2, p1: "Zainuddin", r1: "GC", p2: "Shahryar", r2: "Unranked" },
-        { id: 3, p1: "Osama Amjad", r1: "C II", p2: "Ramez Al Issa", r2: "Unranked" },
-        { id: 4, p1: "Obada", r1: "C I", p2: "Younes Hassan", r2: "Unranked" },
-        { id: 5, p1: "Rafay", r1: "C I", p2: "Syed Umer", r2: "B I" },
-        { id: 6, p1: "Mahmoud Mousa", r1: "D I", p2: "Ahmed Firdawi", r2: "B I" },
-        { id: 7, p1: "Mujtaba Umer", r1: "D I", p2: "Mohammed Samer", r2: "B III" },
-        { id: 8, p1: "Omeir", r1: "P III", p2: "Modasser Sameh", r2: "S" },
-        { id: 9, p1: "Ahmad Ziyad", r1: "P III", p2: "Saif Yazan", r2: "S I" },
-        { id: 10, p1: "Ahmed Gomah", r1: "P II", p2: "Basel Mahmoud", r2: "S III" },
-        { id: 11, p1: "Zain Rafat", r1: "P", p2: "Anwar Bechara", r2: "S III" },
-        { id: 12, p1: "Qamar", r1: "P", p2: "Yahia Saeed", r2: "G" },
-        { id: 13, p1: "Anas Mohammad", r1: "G III", p2: "Khaled Al Shummari", r2: "G" },
-        { id: 14, p1: "Hamza", r1: "G II", p2: "Ammar Mustafa", r2: "G I" },
-        { id: 15, p1: "Ammar Mirza", r1: "G II", p2: "Ali Al Bachari", r2: "G I" },
-        { id: 16, p1: "Hamza Mostafa", r1: "G II", p2: "Ahmad Tabiyyeh", r2: "G II" }
+        { id: 12, p1: "Qamar", r1: "Platinum", p2: "Yahia Saeed", r2: "Gold" },
+        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III" },
+        
+        { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I" },
+        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I" },
+        
+        { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I" },
+        { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hassan", r2: "Unranked" },
+        
+        { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver" },
+        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion III", p2: "Moath Birier", r2: "Unranked" },
+        
+        { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I" },
+        { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Basel Mahmoud", r2: "Silver III" },
+        
+        { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold" },
+        { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked" },
+        
+        { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I" },
+        { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked" },
+        
+        { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II" },
+        { id: 11, p1: "Zain Musab", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III" }
     ];
 
-    // 2. STATISTICS DATA [All values reset to zero]
-    // Example format: "Player Name": [Goals, Assists, Saves, Demos]
-    const matchStats = {
-        "Ali Al Amoudi": [0, 0, 0, 0]
-    };
+    const matchStats = { "Ali Al Amoudi": [0, 0, 0, 0] };
 
-    // Update Individual Leaderboards
     function updateLeaderboard() {
         const categories = { goals: 0, assists: 1, saves: 2, demos: 3 };
         const ids = ['goals-list', 'assists-list', 'saves-list', 'demos-list'];
@@ -214,7 +235,7 @@
         Object.keys(categories).forEach((cat, index) => {
             const listElement = document.getElementById(ids[index]);
             const sorted = Object.entries(matchStats)
-                .filter(p => p[1][categories[cat]] > 0) // Only show players with > 0 stats
+                .filter(p => p[1][categories[cat]] > 0)
                 .sort((a, b) => b[1][categories[cat]] - a[1][categories[cat]])
                 .slice(0, 5);
             
@@ -231,30 +252,29 @@
         });
     }
 
+    // Modal UI Fix
     function openModal(t1, t2) {
         document.getElementById('modalTitle').innerText = `TEAM ${t1.id} vs TEAM ${t2.id}`;
         const body = document.getElementById('statBody');
         const matchPlayers = [{n: t1.p1, r: t1.r1}, {n: t1.p2, r: t1.r2}, {n: t2.p1, r: t2.r1}, {n: t2.p2, r: t2.r2}];
         body.innerHTML = matchPlayers.map(p => {
             const s = matchStats[p.n] || [0, 0, 0, 0];
-            return `<tr><td class="player-name-cell"><b>${p.n}</b><br><small style="color:#555">${p.r}</small></td><td class="stat-highlight">${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td><td>${s[3]}</td></tr>`;
+            return `<tr><td style="text-align:left; padding:12px;"><b>${p.n}</b><br><small style="color:var(--accent)">${p.r}</small></td><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td><td>${s[3]}</td></tr>`;
         }).join('');
         document.getElementById('statModal').style.display = 'flex';
     }
 
     function closeModal() { document.getElementById('statModal').style.display = 'none'; }
 
-    // Populate Roster List
     const rosterList = document.getElementById('roster-list');
-    teams.forEach(t => {
+    [...teams].sort((a,b) => a.id - b.id).forEach(t => {
         rosterList.innerHTML += `<tr><td class="team-id-tag">T-${t.id}</td><td><div style="display:flex; justify-content:space-between; margin-bottom:5px;">${t.p1} <span class="rank-pill">${t.r1}</span></div><div style="display:flex; justify-content:space-between;">${t.p2} <span class="rank-pill">${t.r2}</span></div></td></tr>`;
     });
 
-    // Generate Randomized Bracket
-    const shuffled = [...teams].sort(() => Math.random() - 0.5);
+    // Generate Bracket - Shuffling Removed
     const grid = document.getElementById('bracket-grid');
-    for (let i = 0; i < shuffled.length; i += 2) {
-        const teamA = shuffled[i]; const teamB = shuffled[i+1];
+    for (let i = 0; i < teams.length; i += 2) {
+        const teamA = teams[i]; const teamB = teams[i+1];
         const card = document.createElement('div');
         card.className = 'matchup-card';
         card.onclick = () => openModal(teamA, teamB);
@@ -265,5 +285,4 @@
     updateLeaderboard();
 </script>
 </body>
-
 </html>
