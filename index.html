@@ -4,99 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NWIS Rocket League Tournament</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #05080a;
             --card-bg: rgba(255, 255, 255, 0.02);
             --accent: #00e5ff;
+            --upcoming: #ffcc00; /* Yellow for "Starts Soon" */
             --text-head: 'Orbitron', sans-serif;
             --text-body: 'Inter', sans-serif;
             --border: rgba(255, 255, 255, 0.08);
         }
 
-        body {
-            background-color: var(--bg);
-            color: #e0e6ed;
-            font-family: var(--text-body);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            padding: 60px 20px;
-            text-align: center;
-            background: radial-gradient(circle at center, #001a33 0%, #05080a 100%);
-            border-bottom: 1px solid var(--border);
-        }
-
+        body { background-color: var(--bg); color: #e0e6ed; font-family: var(--text-body); margin: 0; line-height: 1.6; }
+        header { padding: 60px 20px; text-align: center; background: radial-gradient(circle at center, #001a33 0%, #05080a 100%); border-bottom: 1px solid var(--border); }
         h1 { font-family: var(--text-head); font-size: 2.5rem; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(0,229,255,0.4); }
         h2 { font-family: var(--text-head); font-size: 1.1rem; color: var(--accent); margin: 40px 0 20px; text-align: center; letter-spacing: 3px; text-transform: uppercase; }
-
         .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* BRACKET GRID */
-        .matchup-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .matchup-card {
-            background: linear-gradient(145deg, #0a1116, #05080a);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            position: relative;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .matchup-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 15px rgba(0, 229, 255, 0.15); }
+        .matchup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .matchup-card { background: linear-gradient(145deg, #0a1116, #05080a); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; transition: 0.3s; cursor: pointer; }
+        .matchup-card:hover { border-color: var(--accent); transform: translateY(-3px); }
         
-        .match-label { font-size: 0.55rem; color: #444; position: absolute; top: 10px; right: 15px; font-family: var(--text-head); text-transform: uppercase; }
+        /* YELLOW UPCOMING HIGHLIGHT */
+        .upcoming-match { border-color: var(--upcoming) !important; box-shadow: 0 0 10px rgba(255, 204, 0, 0.2); }
+        .upcoming-text { color: var(--upcoming) !important; font-weight: bold; }
 
-        /* SIDE-BY-SIDE LAYOUT */
-        .match-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            margin-top: 10px;
-        }
+        .match-label { font-size: 0.55rem; color: #444; position: absolute; top: 10px; right: 15px; font-family: var(--text-head); }
+        .match-container { display: flex; align-items: center; justify-content: space-around; margin-top: 10px; }
+        .team-box { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .team-name { font-family: var(--text-head); font-size: 0.85rem; font-weight: bold; }
+        .team-score { font-family: var(--text-head); font-size: 1.5rem; color: var(--accent); }
+        .prob-text { font-size: 0.6rem; color: #666; margin-top: 5px; }
+        .vs-divider-text { font-family: var(--text-head); font-size: 0.7rem; color: #333; }
 
-        .team-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1;
-        }
+        .prob-bar-bg { height: 3px; background: #111; margin-top: 15px; border-radius: 10px; overflow: hidden; }
+        .prob-bar-fill { height: 100%; background: var(--accent); transition: 0.5s; }
 
-        .team-name { font-family: var(--text-head); font-size: 0.85rem; font-weight: bold; margin-bottom: 5px; }
-        .team-score { font-family: var(--text-head); font-size: 1.5rem; color: var(--accent); font-weight: 700; }
-
-        .vs-divider-text { font-family: var(--text-head); font-size: 0.7rem; color: #333; font-weight: bold; }
-
-        /* STATS & TABLES */
-        .stats-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-        }
+        .stats-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 60px; }
         .stat-column { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 15px; padding: 20px; }
         .stat-column h3 { font-family: var(--text-head); font-size: 0.75rem; color: var(--accent); text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
-        .stat-leader-row { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .stat-leader-row { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; }
         .stat-val { font-weight: bold; color: var(--accent); font-family: var(--text-head); }
 
         .teams-table-wrapper { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; overflow: hidden; margin-bottom: 50px; }
         table { width: 100%; border-collapse: collapse; }
-        th { background: rgba(255,255,255,0.03); padding: 15px; text-align: left; font-size: 0.7rem; color: #555; text-transform: uppercase; }
+        th { background: rgba(255,255,255,0.03); padding: 15px; text-align: left; font-size: 0.7rem; color: #555; }
         td { padding: 15px; border-top: 1px solid var(--border); font-size: 0.9rem; }
-        .team-id-tag { color: var(--accent); font-family: var(--text-head); font-weight: bold; width: 80px; }
-        .rank-pill { font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; background: rgba(0,229,255,0.05); color: var(--accent); border: 1px solid rgba(0,229,255,0.1); margin-left: 8px; font-weight: bold; }
+        .team-id-full { color: var(--accent); font-family: var(--text-head); font-weight: bold; width: 120px; }
+        .rank-pill { font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; background: rgba(0,229,255,0.05); color: var(--accent); border: 1px solid rgba(0,229,255,0.1); font-weight: bold; }
 
-        /* MODAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 1000; }
         .modal-content { background: #0a1116; padding: 30px; border-radius: 20px; border: 1px solid var(--accent); max-width: 600px; width: 90%; position: relative; }
         .close-btn { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 1.5rem; color: var(--accent); }
@@ -105,13 +63,12 @@
 <body>
 
 <header>
-    <h1>NWIS RL TOURNAMENT</h1>
+    <h1>NWIS Rocket League TOURNAMENT</h1>
     <p style="color: #444; letter-spacing: 5px; font-size: 0.8rem; margin-top: 10px;">PRO SERIES: ROUND OF 16</p>
 </header>
 
 <div class="container">
-    <h2>Championship Bracket</h2>
-    <p style="text-align: center; color: #666; font-size: 0.75rem; margin-top: -15px; margin-bottom: 30px;">Click any bracket to view full player statistics</p>
+    <h2>Round of 16 Bracket</h2>
     <div class="matchup-grid" id="bracket-grid"></div>
 
     <h2>Individual Leaderboards</h2>
@@ -125,12 +82,7 @@
     <h2>Team Information & Rosters</h2>
     <div class="teams-table-wrapper">
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Team Roster</th>
-                </tr>
-            </thead>
+            <thead><tr><th>TEAM ID</th><th>ROSTER</th></tr></thead>
             <tbody id="roster-list"></tbody>
         </table>
     </div>
@@ -139,18 +91,10 @@
 <div class="modal-overlay" id="statModal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="margin-top:0; font-size: 1rem; letter-spacing: 2px; text-align: center;">MATCH STATISTICS</h2>
+        <h2 id="modalTitle" style="margin-top:0; font-size: 1rem; text-align: center;">MATCH STATISTICS</h2>
         <div style="overflow-x: auto;">
-            <table class="stat-table">
-                <thead>
-                    <tr>
-                        <th style="text-align: left;">PLAYER</th>
-                        <th>GOALS</th>
-                        <th>ASSISTS</th>
-                        <th>SAVES</th>
-                        <th>DEMOS</th>
-                    </tr>
-                </thead>
+            <table>
+                <thead><tr><th style="text-align: left;">PLAYER</th><th>G</th><th>A</th><th>S</th><th>D</th></tr></thead>
                 <tbody id="statBody"></tbody>
             </table>
         </div>
@@ -158,104 +102,67 @@
 </div>
 
 <script>
-    // 1. TEAM INFORMATION (Fixed matchups and Expanded Ranks)
     const teams = [
         { id: 12, p1: "Qamar", r1: "Platinum", p2: "Yahia Saeed", r2: "Gold" },
         { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III" },
-        
         { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I" },
         { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I" },
-        
         { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I" },
         { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hassan", r2: "Unranked" },
-        
         { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver" },
         { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion III", p2: "Moath Birier", r2: "Unranked" },
-        
         { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I" },
         { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Basel Mahmoud", r2: "Silver III" },
-        
         { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold" },
         { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked" },
-        
         { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I" },
         { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked" },
-        
         { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II" },
         { id: 11, p1: "Zain Musab", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III" }
     ];
 
-    const matchStats = { "Ali Al Amoudi": [0, 0, 0, 0] };
-
-    function updateLeaderboard() {
-        const categories = { goals: 0, assists: 1, saves: 2, demos: 3 };
-        const ids = ['goals-list', 'assists-list', 'saves-list', 'demos-list'];
-        
-        Object.keys(categories).forEach((cat, index) => {
-            const listElement = document.getElementById(ids[index]);
-            const sorted = Object.entries(matchStats)
-                .filter(p => p[1][categories[cat]] > 0)
-                .sort((a, b) => b[1][categories[cat]] - a[1][categories[cat]])
-                .slice(0, 5);
-            
-            if (sorted.length === 0) {
-                listElement.innerHTML = `<div style="color:#333; font-size:0.7rem; text-align:center;">Waiting for data...</div>`;
-            } else {
-                listElement.innerHTML = sorted.map(player => `
-                    <div class="stat-leader-row">
-                        <span>${player[0]}</span>
-                        <span class="stat-val">${player[1][categories[cat]]}</span>
-                    </div>
-                `).join('');
-            }
-        });
-    }
+    const rankValues = { "Grand Champion III": 19, "Grand Champion": 17, "Champion II": 15, "Champion I": 14, "Diamond I": 11, "Platinum III": 10, "Platinum II": 9, "Platinum": 8, "Gold III": 7, "Gold II": 6, "Gold I": 5, "Gold": 5, "Silver III": 4, "Silver I": 2, "Silver": 3, "Bronze III": 2, "Bronze I": 1, "Unranked": 3 };
+    const matchStats = {};
 
     function openModal(t1, t2) {
-        document.getElementById('modalTitle').innerText = `TEAM ${t1.id} vs TEAM ${t2.id}`;
+        document.getElementById('modalTitle').innerText = `TEAM ${t1.id} VS TEAM ${t2.id}`;
         const body = document.getElementById('statBody');
-        const matchPlayers = [{n: t1.p1, r: t1.r1}, {n: t1.p2, r: t1.r2}, {n: t2.p1, r: t2.r1}, {n: t2.p2, r: t2.r2}];
-        body.innerHTML = matchPlayers.map(p => {
-            const s = matchStats[p.n] || [0, 0, 0, 0];
+        const players = [{n: t1.p1, r: t1.r1}, {n: t1.p2, r: t1.r2}, {n: t2.p1, r: t2.r1}, {n: t2.p2, r: t2.r2}];
+        body.innerHTML = players.map(p => {
+            const s = matchStats[p.n] || [0,0,0,0];
             return `<tr><td style="text-align:left; padding:12px;"><b>${p.n}</b><br><small style="color:var(--accent)">${p.r}</small></td><td style="text-align:center">${s[0]}</td><td style="text-align:center">${s[1]}</td><td style="text-align:center">${s[2]}</td><td style="text-align:center">${s[3]}</td></tr>`;
         }).join('');
         document.getElementById('statModal').style.display = 'flex';
     }
-
     function closeModal() { document.getElementById('statModal').style.display = 'none'; }
 
-    // Roster sorted by ID for the bottom table
     const rosterList = document.getElementById('roster-list');
     [...teams].sort((a,b) => a.id - b.id).forEach(t => {
-        rosterList.innerHTML += `<tr><td class="team-id-tag">T-${t.id}</td><td><div style="display:flex; justify-content:space-between; margin-bottom:5px;">${t.p1} <span class="rank-pill">${t.r1}</span></div><div style="display:flex; justify-content:space-between;">${t.p2} <span class="rank-pill">${t.r2}</span></div></td></tr>`;
+        rosterList.innerHTML += `<tr><td class="team-id-full">Team ${t.id}</td><td><div style="display:flex; justify-content:space-between;">${t.p1} <span class="rank-pill">${t.r1}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px;">${t.p2} <span class="rank-pill">${t.r2}</span></div></td></tr>`;
     });
 
-    // 3. BRACKET GENERATION (Side-by-side, Shuffle Removed)
     const grid = document.getElementById('bracket-grid');
     for (let i = 0; i < teams.length; i += 2) {
-        const teamA = teams[i]; const teamB = teams[i+1];
+        const tA = teams[i], tB = teams[i+1];
+        const pA = rankValues[tA.r1] + rankValues[tA.r2], pB = rankValues[tB.r1] + rankValues[tB.r2];
+        const probA = Math.round((pA/(pA+pB))*100), probB = 100 - probA;
         const card = document.createElement('div');
-        card.className = 'matchup-card';
-        card.onclick = () => openModal(teamA, teamB);
+        
+        // Highlight Team 12 vs Team 7
+        const isUpcoming = tA.id === 12;
+        card.className = `matchup-card ${isUpcoming ? 'upcoming-match' : ''}`;
+        card.onclick = () => openModal(tA, tB);
         
         card.innerHTML = `
-            <span class="match-label">Round of 16</span>
+            <span class="match-label ${isUpcoming ? 'upcoming-text' : ''}">${isUpcoming ? 'MATCH STARTS SOON' : 'Round of 16'}</span>
             <div class="match-container">
-                <div class="team-box">
-                    <div class="team-name">TEAM ${teamA.id}</div>
-                    <div class="team-score">0</div>
-                </div>
+                <div class="team-box"><div class="team-name">Team ${tA.id}</div><div class="team-score">0</div><div class="prob-text">${probA}%</div></div>
                 <div class="vs-divider-text">VS</div>
-                <div class="team-box">
-                    <div class="team-name">TEAM ${teamB.id}</div>
-                    <div class="team-score">0</div>
-                </div>
+                <div class="team-box"><div class="team-name">Team ${tB.id}</div><div class="team-score">0</div><div class="prob-text">${probB}%</div></div>
             </div>
-        `;
+            <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:${probA}%"></div></div>`;
         grid.appendChild(card);
     }
-
-    updateLeaderboard();
 </script>
 </body>
 </html>
