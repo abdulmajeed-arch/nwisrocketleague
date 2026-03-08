@@ -157,6 +157,7 @@
 <div class="news-ribbon">
     <div class="news-track">
         <span class="news-item">Rocket League Tournament: Round of 16 Progressing</span>
+        <span class="news-item">Team 11 (Zain & Anwar) advances after winning against Team 16.</span>
         <span class="news-item">Team 4 (Obada & Younes) eliminates Team 5 after a thrilling 3-game series.</span>
         <span class="news-item">Team 15 advances to Quarters after Team 9 forfeits in Match 3.</span>
         <span class="news-item">Team 7 (Mujtaba Umer and Mohammed Samer) knocks out team 12.</span>
@@ -182,8 +183,8 @@
     <div id="home" class="tab-content active">
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px;">
-            <p style="font-size: 1rem; color: #fff;">Latest Result: Team 4 defeats Team 5 (2-1 in series).</p>
-            <p style="font-size: 0.85rem; color: #666;">Obada leads Team 4 to the Quarter Finals with 12 total goals across the series.</p>
+            <p style="font-size: 1rem; color: #fff;">Latest Result: Team 11 defeats Team 16 (2-1 in series).</p>
+            <p style="font-size: 0.85rem; color: #666;">Zain leads Team 11 to victory with 6 goals and 6 saves across the series.</p>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
@@ -210,11 +211,13 @@
                 <div class="tree-match"><div class="tree-team">T9</div><div class="tree-team">T15</div></div>
                 <div class="tree-match"><div class="tree-team">T5</div><div class="tree-team">T4</div></div>
                 <div class="tree-match"><div class="tree-team">T8</div><div class="tree-team">T1</div></div>
+                <div class="tree-match"><div class="tree-team">T16</div><div class="tree-team">T11</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">QUARTERS</div>
                 <div class="tree-match"><div class="tree-team">T7</div><div class="tree-team">T15</div></div>
                 <div class="tree-match"><div class="tree-team">T4</div><div class="tree-team">TBD</div></div>
+                <div class="tree-match"><div class="tree-team">T11</div><div class="tree-team">TBD</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">SEMIS</div>
@@ -315,8 +318,8 @@
         { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked", time: "TBD" },
         { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I", time: "March 8, 2026, 18:40" },
         { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked", time: "March 8, 2026, 18:40" },
-        { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II", time: "March 8, 2026, 16:00" },
-        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", time: "March 8, 2026, 16:00" }
+        { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II", time: "Fulltime" },
+        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", time: "Fulltime" }
     ];
 
     const matchData = {
@@ -334,6 +337,11 @@
             scores: [[5, 3], [2, 4], [2, 7]],
             mvp: "Obada - Team 4",
             highlights: "#" 
+        },
+        "16v11": {
+            scores: [[2, 5], [5, 4], [3, 4]],
+            mvp: "Zain Rafat - Team 11",
+            highlights: "#"
         }
     };
 
@@ -349,7 +357,11 @@
         "Rafay": { g: 9, a: 0, s: 7, d: 3 },
         "Syed Umer": { g: 0, a: 0, s: 0, d: 0 },
         "Obada": { g: 12, a: 1, s: 4, d: 5 },
-        "Younes Hussam": { g: 2, a: 0, s: 1, d: 1 }
+        "Younes Hussam": { g: 2, a: 0, s: 1, d: 1 },
+        "Anwar Bechara": { g: 4, a: 1, s: 0, d: 2 },
+        "Zain Rafat": { g: 6, a: 2, s: 6, d: 2 },
+        "Ahmad Tabiyyeh": { g: 5, a: 4, s: 2, d: 3 },
+        "Hamza Mostafa": { g: 5, a: 2, s: 5, d: 2 }
     };
 
     const rankValues = { "Grand Champion III": 19, "Grand Champion": 17, "Champion II": 15, "Champion I": 14, "Diamond I": 11, "Platinum III": 10, "Platinum II": 9, "Platinum": 8, "Gold III": 7, "Gold II": 6, "Gold I": 5, "Gold": 5, "Silver III": 4, "Silver I": 2, "Silver": 3, "Bronze III": 2, "Bronze I": 1, "Unranked": 3 };
