@@ -159,7 +159,9 @@
         <span class="news-item">Rocket League Tournament: Round of 16 is now Live</span>
         <span class="news-item">Stay Tuned for Live Score Updates</span>
         <span class="news-item">Match Results Appear After Fulltime</span>
-        <span class="news-item">Rocket League Tournament: Round of 16 is now Live</span>
+        <span class="news-item">Team 15 advances to Quarters after Team 9 forfeits in Match 3.</span>
+        <span class="news-item">Team 7 (Mujtaba Umer and Mohammed Samer) knocks out team 12 from the tournament with a stunning performance by Mujtaba Umer.</span>
+	<span class="news-item">Team 15 (Ammar Mirza & Ali Al Bachari) advances to the Quarter Finals after a dominant performance and a forfeit from Team 9.</span>
     </div>
 </div>
 
@@ -181,8 +183,8 @@
     <div id="home" class="tab-content active">
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px;">
-            <p style="font-size: 1rem; color: #fff;">Welcome to the NWIS Rocket League Tournament</p>
-            <p style="font-size: 0.85rem; color: #666;">Tournament systems online. Each Round of 16 pairing is a Best of 3 series. Team 7 Knocks out team 12 from the tournament</p>
+            <p style="font-size: 1rem; color: #fff;">Welcome to the NWIS Rocket League Tournament.</p>
+            <p style="font-size: 0.85rem; color: #666;">Team 15 (Ammar Mirza & Ali Al Bachari) advances to the Quarter Finals after a dominant performance and a forfeit from Team 9.</p>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
@@ -212,7 +214,7 @@
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">QUARTERS</div>
-                <div class="tree-match"><div class="tree-team">TBD</div><div class="tree-team">TBD</div></div>
+                <div class="tree-match"><div class="tree-team">T7</div><div class="tree-team">T15</div></div>
                 <div class="tree-match"><div class="tree-team">TBD</div><div class="tree-team">TBD</div></div>
             </div>
             <div class="tree-column">
@@ -272,7 +274,10 @@
 <footer>
     <p style="font-family: 'Orbitron'; font-size: 0.75rem; margin: 0; color: #444;">Organized by Abdulmajeed Mohiddeen</p>
     <p style="color: var(--accent); font-weight: bold; margin: 10px 0; letter-spacing: 1px;">Admin: +966 50 220 9810</p>
-    <a href="https://chat.whatsapp.com/KI2li2NDCGM8Ulu0rzJq9D" style="display: inline-block; padding: 10px 25px; background: #25d366; color: white; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem;">Join WhatsApp Group</a>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="https://chat.whatsapp.com/KI2li2NDCGM8Ulu0rzJq9D" style="display: inline-block; padding: 10px 25px; background: #25d366; color: white; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem;">Join WhatsApp Group</a>
+        <a href="https://twitch.tv/nwisrocketleague" style="display: inline-block; padding: 10px 25px; background: #9146FF; color: white; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem;">Twitch Link: twitch.tv/nwisrocketleague</a>
+    </div>
 </footer>
 
 <div class="modal-overlay" id="statModal">
@@ -296,15 +301,15 @@
 </div>
 
 <script>
-	const teams = [
-        { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", time: "March 8, 2026, 12:00" },
-        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", time: "March 8, 2026, 12:00" },
-        { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", time: "March 8, 2026, 14:30" },
-        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", time: "March 8, 2026, 14:30" },
+    const teams = [
+        { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", time: "Fulltime" },
+        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", time: "Fulltime" },
+        { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", time: "Fulltime" },
+        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", time: "Fulltime" },
         { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I", time: "March 8, 2026, 16:30" },
         { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hassan", r2: "Unranked", time: "March 8, 2026, 16:30" },
-        { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", time: "TBD" },
-        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion III", p2: "Moath Birier", r2: "Unranked", time: "TBD" },
+        { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", time: "March 9, 2026, 16:00" },
+        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion III", p2: "Moath Birier", r2: "Unranked", time: "March 9, 2026, 16:00" },
         { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I", time: "TBD" },
         { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Basel Mahmoud", r2: "Silver III", time: "TBD" },
         { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold", time: "TBD" },
@@ -315,12 +320,16 @@
         { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", time: "March 8, 2026, 16:00" }
     ];
 
-    // UPDATED DATA FROM MATCH 1
     const matchData = {
         "12v7": {
-            scores: [[3, 4], [7, 3], [1, 2]], // [Team 12, Team 7]
+            scores: [[3, 4], [7, 3], [1, 2]],
             mvp: "Mujtaba Umer - Team 7",
             highlights: "https://youtu.be/ofUvotX9noo?si=HqySyyZs1GncfKNz" 
+        },
+        "9v15": {
+            scores: [[3, 4], [0, 7], ["FF", "W"]],
+            mvp: "Ammar Mirza - Team 15",
+            highlights: "https://youtu.be/0DgcPoTh-ZA?si=POflNQ2sGhoLcHev" 
         }
     };
 
@@ -328,7 +337,11 @@
         "Mujtaba Umer": { g: 8, a: 0, s: 9, d: 2 },
         "Mohammed Samer": { g: 1, a: 1, s: 1, d: 1 },
         "Qamar": { g: 6, a: 1, s: 1, d: 1 },
-        "Rehan Naveed": { g: 6, a: 0, s: 0, d: 1 }
+        "Rehan Naveed": { g: 6, a: 0, s: 0, d: 1 },
+        "Ammar Mirza": { g: 9, a: 1, s: 1, d: 0 },
+        "Ali Al Bachari": { g: 2, a: 1, s: 1, d: 1 },
+        "Ahmad Ziyad": { g: 2, a: 1, s: 6, d: 1 },
+        "Saif Yazan": { g: 1, a: 0, s: 0, d: 0 }
     };
 
     const rankValues = { "Grand Champion III": 19, "Grand Champion": 17, "Champion II": 15, "Champion I": 14, "Diamond I": 11, "Platinum III": 10, "Platinum II": 9, "Platinum": 8, "Gold III": 7, "Gold II": 6, "Gold I": 5, "Gold": 5, "Silver III": 4, "Silver I": 2, "Silver": 3, "Bronze III": 2, "Bronze I": 1, "Unranked": 3 };
@@ -347,12 +360,10 @@
 
         if(!rosterList || !statsBody || !bracketContainer) return;
 
-        // Clear previous content
         rosterList.innerHTML = "";
         statsBody.innerHTML = "";
         bracketContainer.innerHTML = "";
 
-        // Render Rosters and Full Stats Table
         [...teams].sort((a,b) => a.id - b.id).forEach(t => {
             rosterList.innerHTML += `<tr><td style="color:var(--accent); font-weight:bold; padding-left:20px;">Team ${t.id}</td><td style="text-align:left;">${t.p1} <span style="font-size:0.6rem; color:#666;">[${t.r1}]</span><br>${t.p2} <span style="font-size:0.6rem; color:#666;">[${t.r2}]</span></td></tr>`;
             [t.p1, t.p2].forEach(p => {
@@ -361,7 +372,6 @@
             });
         });
 
-        // Render Bracket Matches
         for (let i = 0; i < teams.length; i += 2) {
             const tA = teams[i], tB = teams[i+1];
             const mKey = `${tA.id}v${tB.id}`;
@@ -397,7 +407,6 @@
             bracketContainer.appendChild(group);
         }
 
-        // Update Leaderboard Summaries
         updateLeaderboards();
     }
 
@@ -435,4 +444,3 @@
 </script>
 </body>
 </html>
-
