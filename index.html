@@ -71,6 +71,10 @@
         .match-group:hover { border-color: var(--accent); }
         .match-group-title { font-family: var(--text-head); font-size: 0.8rem; color: #fff; text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
         
+        /* FINISHED MATCH STYLE */
+        .finished-match { border-color: var(--accent) !important; box-shadow: 0 0 15px rgba(0, 229, 255, 0.1); }
+        .status-badge { position: absolute; top: 10px; right: 10px; background: var(--accent); color: #000; font-family: var(--text-head); font-size: 0.5rem; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+
         .bo3-match { background: #0a1116; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .bo3-label { font-family: var(--text-head); font-size: 0.55rem; color: var(--accent); width: 100px; }
         .bo3-score { font-family: var(--text-head); font-size: 1.2rem; display: flex; gap: 15px; align-items: center; }
@@ -183,7 +187,7 @@
     <div id="home" class="tab-content active">
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px;">
-            <p style="font-size: 1rem; color: #fff;">Latest Result: Team 11 defeats Team 16 (2-1 in series).</p>
+            <p style="font-size: 1rem; color: #fff;">Latest Result: Team 11 defeats Team 16.</p>
             <p style="font-size: 0.85rem; color: #666;">Zain leads Team 11 to victory with 6 goals and 6 saves across the series.</p>
         </div>
         
@@ -336,12 +340,12 @@
         "5v4": {
             scores: [[5, 3], [2, 4], [2, 7]],
             mvp: "Obada - Team 4",
-            highlights: "#" 
+            highlights: "https://youtu.be/KxQF90njAwg?si=uGapYgBcbWMaU9Av" 
         },
         "16v11": {
             scores: [[2, 5], [5, 4], [3, 4]],
             mvp: "Zain Rafat - Team 11",
-            highlights: "#"
+            highlights: "https://youtu.be/gftMZCPPSHs?si=w1CHCfaz0ERW0-Tn"
         }
     };
 
@@ -400,9 +404,12 @@
             const pA = rankValues[tA.r1] + rankValues[tA.r2], pB = rankValues[tB.r1] + rankValues[tB.r2];
             const probA = Math.round((pA / (pA + pB)) * 100);
 
+            const isFinished = tA.time === "Fulltime";
+
             const group = document.createElement('div');
-            group.className = 'match-group';
+            group.className = 'match-group' + (isFinished ? ' finished-match' : '');
             group.innerHTML = `
+                ${isFinished ? '<div class="status-badge">FULLTIME</div>' : ''}
                 <div onclick="openModalByIds(${i}, ${i+1}, ${probA})">
                     <div class="match-group-title">TEAM ${tA.id} VS TEAM ${tB.id}</div>
                     ${mInfo.scores.map((s, idx) => `
