@@ -219,6 +219,7 @@
 <nav>
     <button class="nav-btn active" onclick="openTab(event, 'home')">Home</button>
     <button class="nav-btn" onclick="openTab(event, 'bracket')">Bracket</button>
+    <button class="nav-btn" onclick="openTab(event, 'results')">Results</button>
     <button class="nav-btn" onclick="openTab(event, 'stats')">Stats</button>
     <button class="nav-btn" onclick="openTab(event, 'teams')">Teams</button>
     <button class="nav-btn" onclick="openTab(event, 'awards')">Awards</button>
@@ -257,8 +258,37 @@
     </div>
 
     <div id="bracket" class="tab-content">
-        <h2>Round of 16 Matches (Bo3)</h2>
-        <div id="bracket-list"></div>
+        <h2>Quarter-Finals (Bo3)</h2>
+        <div id="bracket-list">
+            <div class="match-group">
+                <div class="match-group-title">QUARTER FINAL 1</div>
+                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="match-time">TUESDAY 10 MARCH - AFTER DRAW</div>
+            </div>
+            <div class="match-group">
+                <div class="match-group-title">QUARTER FINAL 2</div>
+                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="match-time">TUESDAY 10 MARCH - AFTER DRAW</div>
+            </div>
+            <div class="match-group">
+                <div class="match-group-title">QUARTER FINAL 3</div>
+                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="match-time">TUESDAY 10 MARCH - AFTER DRAW</div>
+            </div>
+            <div class="match-group">
+                <div class="match-group-title">QUARTER FINAL 4</div>
+                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>TBD</span><span style="color:#222; font-size:0.6rem;">VS</span><span>TBD</span></div></div>
+                <div class="match-time">TUESDAY 10 MARCH - AFTER DRAW</div>
+            </div>
+        </div>
 
         <h2 style="margin-top: 80px;">The Path to the Final</h2>
         <div class="tree-container">
@@ -290,6 +320,11 @@
                 <div class="tree-match" style="border-color: var(--upcoming);"><div class="tree-team" style="color: var(--upcoming);">CHAMPION</div></div>
             </div>
         </div>
+    </div>
+
+    <div id="results" class="tab-content">
+        <h2>Round of 16 Results (Bo3)</h2>
+        <div id="past-results-list"></div>
     </div>
 
     <div id="stats" class="tab-content">
@@ -442,13 +477,13 @@
     function init() {
         const rosterList = document.getElementById('roster-list');
         const statsBody = document.getElementById('full-stats-body');
-        const bracketContainer = document.getElementById('bracket-list');
+        const resultsContainer = document.getElementById('past-results-list'); // Modified logic
 
-        if(!rosterList || !statsBody || !bracketContainer) return;
+        if(!rosterList || !statsBody || !resultsContainer) return;
 
         rosterList.innerHTML = "";
         statsBody.innerHTML = "";
-        bracketContainer.innerHTML = "";
+        resultsContainer.innerHTML = "";
 
         [...teams].sort((a,b) => a.id - b.id).forEach(t => {
             const formHtml = t.form.map(f => `<span class="form-dot form-${f.toLowerCase()}"></span>`).join('');
@@ -462,6 +497,7 @@
             });
         });
 
+        // Loop through teams and move finished R16 matches to the Results tab
         for (let i = 0; i < teams.length; i += 2) {
             const tA = teams[i], tB = teams[i+1];
             const mKey = `${tA.id}v${tB.id}`;
@@ -470,32 +506,34 @@
             const probA = Math.round((pA / (pA + pB)) * 100);
             const isFinished = tA.time === "Fulltime";
 
-            const group = document.createElement('div');
-            group.className = 'match-group' + (isFinished ? ' finished-match' : '');
-            group.innerHTML = `
-                ${isFinished ? '<div class="status-badge">FULLTIME</div>' : ''}
-                <div onclick="openModalByIds(${i}, ${i+1}, ${probA})">
-                    <div class="match-group-title">TEAM ${tA.id} VS TEAM ${tB.id}</div>
-                    ${mInfo.scores.map((s, idx) => `
-                        <div class="bo3-match">
-                            <span class="bo3-label">MATCH ${idx === 0 ? 'ONE' : idx === 1 ? 'TWO' : 'THREE'}</span>
-                            <div class="bo3-score"><span>${s[0]}</span><span style="color:#222; font-size:0.6rem;">VS</span><span>${s[1]}</span></div>
+            if (isFinished) {
+                const group = document.createElement('div');
+                group.className = 'match-group finished-match';
+                group.innerHTML = `
+                    <div class="status-badge">FULLTIME</div>
+                    <div onclick="openModalByIds(${i}, ${i+1}, ${probA})">
+                        <div class="match-group-title">TEAM ${tA.id} VS TEAM ${tB.id}</div>
+                        ${mInfo.scores.map((s, idx) => `
+                            <div class="bo3-match">
+                                <span class="bo3-label">MATCH ${idx === 0 ? 'ONE' : idx === 1 ? 'TWO' : 'THREE'}</span>
+                                <div class="bo3-score"><span>${s[0]}</span><span style="color:#222; font-size:0.6rem;">VS</span><span>${s[1]}</span></div>
+                            </div>
+                        `).join('')}
+                        <div class="win-chance-container">
+                            <div class="chance-fill" style="background:var(--accent); width:${probA}%"></div>
+                            <div class="chance-fill" style="background:#333; width:${100-probA}%"></div>
                         </div>
-                    `).join('')}
-                    <div class="win-chance-container">
-                        <div class="chance-fill" style="background:var(--accent); width:${probA}%"></div>
-                        <div class="chance-fill" style="background:#333; width:${100-probA}%"></div>
+                        <div class="chance-text">${probA}% WIN PROBABILITY ${100-probA}%</div>
                     </div>
-                    <div class="chance-text">${probA}% WIN PROBABILITY ${100-probA}%</div>
-                </div>
-                <div class="highlight-container">
-                    <span class="highlight-title">MATCH HIGHLIGHTS</span>
-                    <button onclick="window.open('${mInfo.highlights || '#'}', '_blank')" style="width:100%; padding:8px; background:var(--accent); color:#000; border:none; border-radius:4px; font-family:var(--text-head); font-size:0.5rem; cursor:pointer; font-weight:bold;">WATCH HIGHLIGHTS</button>
-                </div>
-                <div class="mvp-tag"><span>SERIES MVP</span>${mInfo.mvp}</div>
-                <div class="match-time" data-time="${tA.time}">${tA.time}</div>
-            `;
-            bracketContainer.appendChild(group);
+                    <div class="highlight-container">
+                        <span class="highlight-title">MATCH HIGHLIGHTS</span>
+                        <button onclick="window.open('${mInfo.highlights || '#'}', '_blank')" style="width:100%; padding:8px; background:var(--accent); color:#000; border:none; border-radius:4px; font-family:var(--text-head); font-size:0.5rem; cursor:pointer; font-weight:bold;">WATCH HIGHLIGHTS</button>
+                    </div>
+                    <div class="mvp-tag"><span>SERIES MVP</span>${mInfo.mvp}</div>
+                    <div class="match-time" data-time="${tA.time}">${tA.time}</div>
+                `;
+                resultsContainer.appendChild(group);
+            }
         }
         updateLeaderboards();
         startCountdowns();
