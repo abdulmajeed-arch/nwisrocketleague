@@ -602,16 +602,23 @@
 
     function openModalByIds(idxA, idxB, probA) {
         const tA = teams[idxA], tB = teams[idxB];
-        document.getElementById('modalTitle').innerText = `TEAM ${tA.id} VS TEAM ${tB.id}`;
+        const mKey = `${tA.id}v${tB.id}`;
+        const hasResult = !!matchData[mKey];
+
+        document.getElementById('modalTitle').innerText = hasResult ? `SERIES RECAP: TEAM ${tA.id} VS TEAM ${tB.id}` : `PRE-MATCH: TEAM ${tA.id} VS TEAM ${tB.id}`;
         document.getElementById('labelA').innerText = `TEAM ${tA.id}`;
         document.getElementById('labelB').innerText = `TEAM ${tB.id}`;
         document.getElementById('barA').style.width = probA + "%";
         document.getElementById('barB').style.width = (100 - probA) + "%";
+        
         const players = [{n: tA.p1, r: tA.r1}, {n: tA.p2, r: tA.r2}, {n: tB.p1, r: tB.r1}, {n: tB.p2, r: tB.r2}];
+        
         document.getElementById('statBody').innerHTML = players.map(p => {
-            const s = playerStats[p.n] || {g:0, a:0, s:0, d:0};
+            // If match is finished, use matchData; otherwise show 0 for current match stats
+            const s = hasResult ? (playerStats[p.n] || {g:0, a:0, s:0, d:0}) : {g:0, a:0, s:0, d:0};
             return `<tr><td style="text-align:left"><b>${p.n}</b><br><small style="color:var(--accent)">${p.r}</small></td><td>${s.g}</td><td>${s.a}</td><td>${s.s}</td><td>${s.d}</td></tr>`;
         }).join('');
+        
         document.getElementById('statModal').style.display = 'flex';
     }
 
@@ -620,4 +627,3 @@
 </script>
 </body>
 </html>
-
