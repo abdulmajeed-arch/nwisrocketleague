@@ -24,10 +24,9 @@
             margin: 0; 
             line-height: 1.6; 
             overflow-x: hidden;
-            cursor: none; /* For custom cursor */
+            cursor: none; 
         }
 
-        /* CUSTOM CURSOR */
         #cursor-dot {
             width: 8px; height: 8px; background: var(--accent);
             position: fixed; border-radius: 50%; pointer-events: none;
@@ -39,7 +38,6 @@
             z-index: 9998; transition: 0.15s ease-out; opacity: 0.3;
         }
 
-        /* NEWS RIBBON */
         .news-ribbon {
             background: rgba(0, 0, 0, 0.8);
             border-bottom: 1px solid var(--accent);
@@ -71,12 +69,10 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* TAB NAVIGATION */
         nav { position: sticky; top: 0; background: rgba(5, 8, 10, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); z-index: 1000; display: flex; justify-content: center; padding: 10px 0; gap: 10px; flex-wrap: wrap; }
         .nav-btn { background: none; border: none; color: #666; font-family: var(--text-head); font-size: 0.65rem; padding: 10px 12px; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        /* CONTENT SECTIONS */
         .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -86,7 +82,6 @@
         h2 { font-family: var(--text-head); font-size: 1rem; color: var(--accent); margin: 30px 0 20px; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 70vh; }
 
-        /* BRACKET CARDS & GLASSMORPHISM */
         .match-group { 
             max-width: 600px; margin: 0 auto 50px; 
             background: var(--card-bg); 
@@ -98,7 +93,6 @@
         .match-group:hover { border-color: var(--accent); transform: scale(1.01); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .match-group-title { font-family: var(--text-head); font-size: 0.8rem; color: #fff; text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
         
-        /* FINISHED MATCH STYLE */
         .finished-match { border-color: var(--accent) !important; box-shadow: 0 0 15px rgba(0, 229, 255, 0.1); }
         .status-badge { position: absolute; top: 10px; right: 10px; background: var(--accent); color: #000; font-family: var(--text-head); font-size: 0.5rem; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
 
@@ -106,13 +100,11 @@
         .bo3-label { font-family: var(--text-head); font-size: 0.55rem; color: var(--accent); width: 100px; }
         .bo3-score { font-family: var(--text-head); font-size: 1.2rem; display: flex; gap: 15px; align-items: center; }
 
-        /* STATS & TEAM UI */
         .form-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 2px; }
         .form-w { background: #00ff88; box-shadow: 0 0 5px #00ff88; }
         .form-l { background: #ff4444; }
         .streak-fire { color: #ff6600; font-weight: bold; font-size: 0.6rem; margin-left: 5px; text-shadow: 0 0 5px rgba(255,102,0,0.5); }
 
-        /* HIGHLIGHT BOX */
         .highlight-container {
             margin-top: 20px; padding: 15px;
             background: rgba(0, 229, 255, 0.02);
@@ -131,17 +123,11 @@
         .match-time { font-size: 0.6rem; font-family: var(--text-head); color: var(--upcoming); opacity: 0.8; text-align: right; margin-top: 10px; }
         .countdown { color: var(--accent); font-weight: bold; }
 
-        .win-chance-container { width: 100%; height: 4px; background: #111; margin-top: 15px; border-radius: 10px; display: flex; overflow: hidden; }
-        .chance-fill { height: 100%; transition: 0.5s; }
-        .chance-text { font-size: 0.6rem; color: #555; text-align: center; margin-top: 5px; font-family: var(--text-head); }
-
-        /* TREE */
         .tree-container { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border); border-radius: 20px; padding: 40px 20px; overflow-x: auto; gap: 30px; }
         .tree-column { display: flex; flex-direction: column; justify-content: space-around; min-width: 140px; gap: 15px; }
         .tree-match { background: #0a1116; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
         .tree-team { padding: 8px; font-family: var(--text-head); font-size: 0.6rem; text-align: center; color: #444; border-bottom: 1px solid rgba(255,255,255,0.02); }
 
-        /* AWARDS */
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
         .award-card { background: var(--card-bg); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.04); }
@@ -152,12 +138,10 @@
         .award-card h4 { font-family: var(--text-head); font-size: 0.65rem; margin: 10px 0 5px; color: #fff; }
         .award-card p { font-size: 0.75rem; color: #666; margin: 0; }
 
-        /* STATS */
         .stats-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .stat-column { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 15px; padding: 20px; }
         .stat-column h3 { font-family: var(--text-head); font-size: 0.7rem; color: var(--accent); text-align: center; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; letter-spacing: 1px; }
 
-        /* MODAL */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 2000; }
         .modal-content { background: #0a1116; padding: 30px; border-radius: 20px; border: 1px solid var(--accent); max-width: 700px; width: 95%; }
         
@@ -167,7 +151,6 @@
 
         footer { padding: 60px 20px; text-align: center; border-top: 1px solid var(--border); background: #030506; }
 
-        /* VOTE BANNER ANIMATION */
         .vote-banner {
             background: linear-gradient(90deg, rgba(0,229,255,0.1) 0%, rgba(255,0,123,0.1) 100%);
             border: 2px solid var(--accent);
@@ -184,21 +167,6 @@
             50% { border-color: var(--upset); box-shadow: 0 0 15px var(--upset); }
             100% { border-color: var(--accent); box-shadow: 0 0 0px var(--accent); }
         }
-        .vote-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 30px;
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
-            font-family: var(--text-head);
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-        .vote-btn:hover { background: #fff; transform: scale(1.05); }
     </style>
 </head>
 <body>
@@ -212,7 +180,7 @@
         <span class="news-item">Team 10 To face Team 11 in the quarter finals.</span>
         <span class="news-item">Team 3 To face Team 7 in the quarter finals.</span>
         <span class="news-item">Team 1 To face Team 15 in the quarter finals.</span>
-        <span class="news-item">Team 4 To face Team 2 in the quarter finals.</span>
+        <span class="news-item">Team 2 defeats Team 4 to reach the Semi-Finals!</span>
     </div>
 </div>
 
@@ -233,12 +201,12 @@
 <div class="container">
     
     <div id="home" class="tab-content active">
+
         <div class="vote-banner">
-            <div style="font-family: var(--text-head); font-size: 0.6rem; color: var(--upset); letter-spacing: 2px; margin-bottom: 5px;">LIVE VOTING OPEN</div>
-            <h2 style="margin: 0; font-size: 1.4rem; color: #fff;">PLAYER OF THE ROUND</h2>
-            <p style="color: #666; font-size: 0.8rem; margin: 10px 0;">Who was the standout performer in the Round of 16? Cast your vote now!</p>
-            <a href="https://forms.gle/DYb5nQgQFPDs6JXm8" target="_blank" class="vote-btn">Vote Now</a>
+            <h2 style="margin: 0; font-size: 1.4rem; color: #fff;">Obada Amjad</h2>
+            <p style="color: #666; font-size: 0.8rem; margin: 10px 0;">PLAYER OF THE ROUND</p>
         </div>
+
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
             <p style="font-size: 1rem; color: #fff;">Round of 16 is DONE!</p>
@@ -260,35 +228,7 @@
     <div id="bracket" class="tab-content">
         <h2>Quarter-Finals (Bo3)</h2>
         <div id="bracket-list">
-            <div class="match-group" onclick="openModalByIds(findTeamIdx(1), findTeamIdx(15), calculateProb(1, 15))">
-                <div class="match-group-title">Team 1 VS Team 15</div>
-                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="match-time">TBD</div>
             </div>
-            <div class="match-group" onclick="openModalByIds(findTeamIdx(4), findTeamIdx(2), calculateProb(4, 2))">
-                <div class="match-group-title">Team 4 VS Team 2</div>
-                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="match-time">2:30 PM, Wednesday, 11-03-2026</div>
-            </div>
-            <div class="match-group" onclick="openModalByIds(findTeamIdx(3), findTeamIdx(7), calculateProb(3, 7))">
-                <div class="match-group-title">Team 3 VS Team 7</div>
-                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="match-time">4:30 PM, Wednesday, 11-03-2026</div>
-            </div>
-            <div class="match-group" onclick="openModalByIds(findTeamIdx(10), findTeamIdx(11), calculateProb(10, 11))">
-                <div class="match-group-title">Team 10 VS Team 11</div>
-                <div class="bo3-match"><span class="bo3-label">MATCH ONE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH TWO</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="bo3-match"><span class="bo3-label">MATCH THREE</span><div class="bo3-score"><span>0</span><span style="color:#222; font-size:0.6rem;">VS</span><span>0</span></div></div>
-                <div class="match-time">TBD</div>
-            </div>
-        </div>
 
         <h2 style="margin-top: 80px;">The Path to the Final</h2>
         <div class="tree-container">
@@ -312,7 +252,7 @@
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">SEMIS</div>
-                <div class="tree-match"><div class="tree-team">TBD</div><div class="tree-team">TBD</div></div>
+                <div class="tree-match"><div class="tree-team">Team 2</div><div class="tree-team">TBD</div></div>
                 <div class="tree-match"><div class="tree-team">TBD</div><div class="tree-team">TBD</div></div>
             </div>
             <div class="tree-column">
@@ -327,15 +267,11 @@
     </div>
 
     <div id="results" class="tab-content">
-        <h2>Round of 16 Results (Bo3)</h2>
+        <h2>Match Results</h2>
         <div id="past-results-list"></div>
     </div>
 
     <div id="stats" class="tab-content">
-        <div style="text-align: center; margin-bottom: 30px; padding: 15px; background: rgba(0,229,255,0.05); border-radius: 10px; border: 1px solid var(--accent);">
-            <span style="font-family: var(--text-head); font-size: 0.6rem; color: var(--accent);">VOTE FOR PLAYER OF THE ROUND: </span>
-            <a href="https://forms.gle/DYb5nQgQFPDs6JXm8" target="_blank" style="color: #fff; font-weight: bold; font-size: 0.7rem; text-decoration: underline; margin-left: 10px;">CLICK HERE</a>
-        </div>
 
         <h2>Tournament Leaders</h2>
         <div class="stats-dashboard">
@@ -412,22 +348,22 @@
 
 <script>
     const teams = [
-        { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", time: "Fulltime", form: ["L", "W", "L"], streak: 0 },
-        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", time: "Fulltime", form: ["W", "L", "W"], streak: 1 },
-        { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", time: "Fulltime", form: ["L", "L"], streak: 0 },
-        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", time: "Fulltime", form: ["W", "W"], streak: 2 },
-        { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I", time: "Fulltime", form: ["W", "L", "L"], streak: 0 },
-        { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hussam", r2: "Unranked", time: "Fulltime", form: ["L", "W", "W"], streak: 2 },
-        { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", time: "Fulltime", form: ["L", "L"], streak: 0 },
-        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion I", p2: "Moath Birier", r2: "Unranked", time: "Fulltime", form: ["W", "W"], streak: 2 },
-        { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I", time: "Fulltime", form: ["W", "L", "L"], streak: 0 },
-        { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Eyad Gomah", r2: "Silver III", time: "Fulltime", form: ["L", "W", "W"], streak: 2 },
-        { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold", time: "Fulltime", form: ["L", "L"], streak: 0 },
-        { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked", time: "Fulltime", form: ["W", "W"], streak: 2 },
-        { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I", time: "Fulltime", form: ["L", "L"], streak: 0 },
-        { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked", time: "Fulltime", form: ["W", "W"], streak: 2 },
-        { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II", time: "Fulltime", form: ["L", "W", "L"], streak: 0 },
-        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", time: "Fulltime", form: ["W", "L", "W"], streak: 1 }
+        { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", form: ["L", "W", "L"], streak: 0 },
+        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", form: ["W", "L", "W"], streak: 1 },
+        { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", form: ["L", "L"], streak: 0 },
+        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", form: ["W", "W"], streak: 2 },
+        { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
+        { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hussam", r2: "Unranked", form: ["L", "W", "W", "L"], streak: 0 },
+        { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", form: ["L", "L"], streak: 0 },
+        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion I", p2: "Moath Birier", r2: "Unranked", form: ["W", "W"], streak: 2 },
+        { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
+        { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Eyad Gomah", r2: "Silver III", form: ["L", "W", "W"], streak: 2 },
+        { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold", form: ["L", "L"], streak: 0 },
+        { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked", form: ["W", "W"], streak: 2 },
+        { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I", form: ["L", "L"], streak: 0 },
+        { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked", form: ["W", "W", "W"], streak: 3 },
+        { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II", form: ["L", "W", "L"], streak: 0 },
+        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", form: ["W", "L", "W"], streak: 1 }
     ];
 
     const playerStats = {
@@ -441,8 +377,8 @@
         "Saif Yazan": { g: 1, a: 0, s: 0, d: 0, cs: 0 },
         "Rafay": { g: 9, a: 0, s: 7, d: 3, cs: 0 },
         "Syed Umer": { g: 0, a: 0, s: 0, d: 0, cs: 0 },
-        "Obada": { g: 12, a: 1, s: 4, d: 5, cs: 0 },
-        "Younes Hussam": { g: 2, a: 0, s: 1, d: 1, cs: 0 },
+        "Obada": { g: 24, a: 1, s: 18, d: 13, cs: 0 }, 
+        "Younes Hussam": { g: 2, a: 2, s: 3, d: 1, cs: 0 },
         "Anwar Bechara": { g: 4, a: 1, s: 0, d: 2, cs: 0 },
         "Zain Rafat": { g: 6, a: 2, s: 6, d: 2, cs: 0 },
         "Ahmad Tabiyyeh": { g: 5, a: 4, s: 2, d: 3, cs: 0 },
@@ -451,8 +387,8 @@
         "Moath Birier": { g: 1, a: 0, s: 0, d: 1, cs: 1 },
         "Omeir": { g: 1, a: 1, s: 2, d: 1, cs: 0 },
         "Modasser Sameh": { g: 2, a: 0, s: 4, d: 0, cs: 0 },
-        "Shahryar": { g: 7, a: 1, s: 2, d: 1, cs: 1 },
-        "Zainuddin": { g: 5, a: 3, s: 2, d: 1, cs: 1 },
+        "Shahryar": { g: 7, a: 3, s: 18, d: 3, cs: 1 }, 
+        "Zainuddin": { g: 21, a: 3, s: 12, d: 15, cs: 1 }, 
         "Hamza": { g: 0, a: 0, s: 0, d: 0, cs: 0 },
         "Ammar Mustafa": { g: 1, a: 0, s: 4, d: 1, cs: 0 },
         "Mahmoud Mousa": { g: 3, a: 1, s: 3, d: 4, cs: 0 },
@@ -468,17 +404,27 @@
     const rankValues = { "Grand Champion III": 19, "Grand Champion": 17, "Champion II": 15, "Champion I": 14, "Diamond I": 11, "Platinum III": 10, "Platinum II": 9, "Platinum": 8, "Gold III": 7, "Gold II": 6, "Gold I": 5, "Gold": 5, "Silver III": 4, "Silver I": 2, "Silver": 3, "Bronze III": 2, "Bronze I": 1, "Unranked": 3 };
 
     const matchData = {
-        "12v7": { scores: [[3, 4], [7, 3], [1, 2]], mvp: "Mujtaba Umer - Team 7", highlights: "https://drive.google.com/drive/folders/1Ufm89D6uM_9IEk2AvA_wW2dYT0aWLq0t?usp=drive_link" },
-        "9v15": { scores: [[3, 4], [0, 7], ["-", "-"]], mvp: "Ammar Mirza - Team 15", highlights: "https://drive.google.com/drive/folders/15TbyCdD4gDt3IECUqnEhMjXrX-wuphIX?usp=sharing" },
-        "5v4": { scores: [[5, 3], [2, 4], [2, 7]], mvp: "Obada - Team 4", highlights: "https://drive.google.com/drive/folders/1hEO8HBx1qPknBHQwB8NED3Bx-yT54rUQ?usp=sharing" },
-        "16v11": { scores: [[2, 5], [5, 4], [3, 4]], mvp: "Zain Rafat - Team 11", highlights: "https://drive.google.com/drive/folders/1WKLPbbyANkm68MHDFt_he5-5f_prc6QX?usp=sharing" },
-        "8v1": { scores: [[2, 5], [1, 7], ["-", "-"]], mvp: "Ali Al Amoudi - Team 1", highlights: "https://drive.google.com/drive/folders/12YxIx1YytW2yY_9QclIcIqBqTNgPPJW8?usp=sharing" },
+        "12v7": { scores: [[3, 4], [7, 3], [1, 2]], mvp: "Mujtaba Umer - Team 7", highlights: "https://drive.google.com/drive/folders/1Ufm89D6uM_9IEk2AvA_wW2dYT0aWLq0t?usp=sharing" },
+        "9v15": { scores: [[3, 4], [0, 7], ["-", "-"]], mvp: "Ammar Mirza - Team 15", highlights: "https://drive.google.com/drive/folders/15TbyCdD4gDt3IECUqnEhMjXrX-wuphIX?usp=drive_link" },
+        "5v4": { scores: [[5, 3], [2, 4], [2, 7]], mvp: "Obada - Team 4", highlights: "https://drive.google.com/drive/folders/1hEO8HBx1qPknBHQwB8NED3Bx-yT54rUQ?usp=drive_link" },
+        "16v11": { scores: [[2, 5], [5, 4], [3, 4]], mvp: "Zain Rafat - Team 11", highlights: "https://drive.google.com/drive/folders/1WKLPbbyANkm68MHDFt_he5-5f_prc6QX?usp=drive_link" },
+        "8v1": { scores: [[2, 5], [1, 7], ["-", "-"]], mvp: "Ali Al Amoudi - Team 1", highlights: "https://drive.google.com/drive/folders/12YxIx1YytW2yY_9QclIcIqBqTNgPPJW8?usp=drive_link" },
         "14v2": { scores: [[0, 4], [1, 8], ["-", "-"]], mvp: "Shahryar - Team 2", highlights: "#" },
         "6v10": { scores: [[4, 0], [1, 2], [1, 3]], mvp: "Ahmed Gomah - Team 10", highlights: "#" },
-        "13v3": { scores: [[3, 7], [1, 10], ["-", "-"]], mvp: "Osama - Team 3", highlights: "#" }
+        "13v3": { scores: [[3, 7], [1, 10], ["-", "-"]], mvp: "Osama - Team 3", highlights: "#" },
+        "4v2": { 
+            scores: [[3, 4], [3, 2], [0, 2]], 
+            mvp: "Zainuddin - Team 2", 
+            highlights: "https://drive.google.com/drive/folders/1yTDy8CUWYAWFUvTed-9q1_st8mwHW5Rc?usp=drive_link",
+            matchStats: {
+                "Zainuddin": { g: 8, a: 0, s: 5, d: 7 },
+                "Shahryar": { g: 0, a: 1, s: 8, d: 1 },
+                "Obada": { g: 6, a: 0, s: 7, d: 4 },
+                "Younes Hussam": { g: 0, a: 1, s: 1, d: 0 }
+            }
+        }
     };
 
-    // Helper functions for QF Modal interactivity
     function findTeamIdx(teamId) { return teams.findIndex(t => t.id === teamId); }
     function calculateProb(idA, idB) {
         const tA = teams.find(t => t.id === idA), tB = teams.find(t => t.id === idB);
@@ -490,17 +436,19 @@
         const rosterList = document.getElementById('roster-list');
         const statsBody = document.getElementById('full-stats-body');
         const resultsContainer = document.getElementById('past-results-list');
+        const bracketList = document.getElementById('bracket-list');
 
-        if(!rosterList || !statsBody || !resultsContainer) return;
+        if(!rosterList || !statsBody || !resultsContainer || !bracketList) return;
 
         rosterList.innerHTML = "";
         statsBody.innerHTML = "";
         resultsContainer.innerHTML = "";
+        bracketList.innerHTML = "";
 
+        // 1. Populate Rosters and Full Stats
         [...teams].sort((a,b) => a.id - b.id).forEach(t => {
             const formHtml = t.form.map(f => `<span class="form-dot form-${f.toLowerCase()}"></span>`).join('');
             const streakHtml = t.streak > 1 ? `<span class="streak-fire">🔥 ${t.streak} STREAK</span>` : '';
-            
             rosterList.innerHTML += `<tr><td style="color:var(--accent); font-weight:bold; padding-left:20px;">Team ${t.id}${streakHtml}</td><td style="text-align:left;">${t.p1} <span style="font-size:0.6rem; color:#666;">[${t.r1}]</span><br>${t.p2} <span style="font-size:0.6rem; color:#666;">[${t.r2}]</span></td><td>${formHtml}</td></tr>`;
             
             [t.p1, t.p2].forEach(p => {
@@ -509,17 +457,55 @@
             });
         });
 
-        // Loop through original pairs and move finished matches to results tab
-        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11] ];
+        // 2. Populate Bracket Tab with Highlights and MVP
+        const bracketPairs = [ [1, 15], [4, 2], [3, 7], [10, 11] ];
+        bracketPairs.forEach(pair => {
+            const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
+            const tA = teams[idxA], tB = teams[idxB];
+            const mKey = `${tA.id}v${tB.id}`;
+            const mInfo = matchData[mKey];
+            const probA = calculateProb(tA.id, tB.id);
+            
+            const group = document.createElement('div');
+            group.className = mInfo ? 'match-group finished-match' : 'match-group';
+            
+            let innerHTML = `
+                ${mInfo ? '<div class="status-badge">FULLTIME</div>' : ''}
+                <div onclick="openModalByIds(${idxA}, ${idxB}, ${probA})">
+                    <div class="match-group-title">TEAM ${tA.id} VS TEAM ${tB.id}</div>
+                    ${(mInfo ? mInfo.scores : [[0,0],[0,0],[0,0]]).map((s, idx) => `
+                        <div class="bo3-match">
+                            <span class="bo3-label">MATCH ${idx === 0 ? 'ONE' : idx === 1 ? 'TWO' : 'THREE'}</span>
+                            <div class="bo3-score"><span>${s[0]}</span><span style="color:#222; font-size:0.6rem;">VS</span><span>${s[1]}</span></div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="match-time">${mInfo ? 'Fulltime' : 'TBD'}</div>
+            `;
+
+            if (mInfo) {
+                innerHTML += `
+                    <div class="highlight-container">
+                        <span class="highlight-title">MATCH HIGHLIGHTS</span>
+                        <button onclick="window.open('${mInfo.highlights}', '_blank')" style="width:100%; padding:8px; background:var(--accent); color:#000; border:none; border-radius:4px; font-family:var(--text-head); font-size:0.5rem; cursor:pointer; font-weight:bold;">WATCH HIGHLIGHTS</button>
+                    </div>
+                    <div class="mvp-tag"><span>SERIES MVP</span>${mInfo.mvp}</div>
+                `;
+            }
+
+            group.innerHTML = innerHTML;
+            bracketList.appendChild(group);
+        });
+
+        // 3. Populate Past Results Tab
+        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [4, 2] ];
         originalPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
             const tA = teams[idxA], tB = teams[idxB];
             const mKey = `${tA.id}v${tB.id}`;
-            const mInfo = matchData[mKey] || { scores: [[0,0],[0,0],[0,0]], mvp: "TBD" };
-            const pA = rankValues[tA.r1] + rankValues[tA.r2], pB = rankValues[tB.r1] + rankValues[tB.r2];
-            const probA = Math.round((pA / (pA + pB)) * 100);
-
-            if (tA.time === "Fulltime") {
+            if (matchData[mKey]) {
+                const mInfo = matchData[mKey];
+                const probA = calculateProb(tA.id, tB.id);
                 const group = document.createElement('div');
                 group.className = 'match-group finished-match';
                 group.innerHTML = `
@@ -535,7 +521,7 @@
                     </div>
                     <div class="highlight-container">
                         <span class="highlight-title">MATCH HIGHLIGHTS</span>
-                        <button onclick="window.open('${mInfo.highlights || '#'}', '_blank')" style="width:100%; padding:8px; background:var(--accent); color:#000; border:none; border-radius:4px; font-family:var(--text-head); font-size:0.5rem; cursor:pointer; font-weight:bold;">WATCH HIGHLIGHTS</button>
+                        <button onclick="window.open('${mInfo.highlights}', '_blank')" style="width:100%; padding:8px; background:var(--accent); color:#000; border:none; border-radius:4px; font-family:var(--text-head); font-size:0.5rem; cursor:pointer; font-weight:bold;">WATCH HIGHLIGHTS</button>
                     </div>
                     <div class="mvp-tag"><span>SERIES MVP</span>${mInfo.mvp}</div>
                 `;
@@ -544,28 +530,8 @@
         });
 
         updateLeaderboards();
-        startCountdowns();
     }
 
-    function startCountdowns() {
-        setInterval(() => {
-            document.querySelectorAll('.match-time').forEach(el => {
-                const timeStr = el.getAttribute('data-time');
-                if (!timeStr || timeStr === "Fulltime" || timeStr === "TBD") return;
-                const target = new Date(timeStr).getTime();
-                const now = new Date().getTime();
-                const diff = target - now;
-                if (diff > 0) {
-                    const h = Math.floor(diff / 3600000);
-                    const m = Math.floor((diff % 3600000) / 60000);
-                    const s = Math.floor((diff % 60000) / 1000);
-                    el.innerHTML = `STARTS IN: <span class="countdown">${h}h ${m}m ${s}s</span>`;
-                }
-            });
-        }, 1000);
-    }
-
-    // Cursor Logic
     document.addEventListener('mousemove', e => {
         const dot = document.getElementById('cursor-dot');
         const glow = document.getElementById('cursor-glow');
@@ -597,15 +563,15 @@
             const id = k === 'g' ? 'top-goals' : k === 'a' ? 'top-assists' : k === 's' ? 'top-saves' : 'top-demos';
             if(res) document.getElementById(id).innerHTML = `${res.names} (${res.val})`;
         });
-        document.getElementById('potr-display').innerText = "Osama";
     }
 
     function openModalByIds(idxA, idxB, probA) {
         const tA = teams[idxA], tB = teams[idxB];
         const mKey = `${tA.id}v${tB.id}`;
-        const hasResult = !!matchData[mKey];
+        const matchInfo = matchData[mKey];
+        const hasSpecificStats = matchInfo && matchInfo.matchStats;
 
-        document.getElementById('modalTitle').innerText = hasResult ? `SERIES RECAP: TEAM ${tA.id} VS TEAM ${tB.id}` : `PRE-MATCH: TEAM ${tA.id} VS TEAM ${tB.id}`;
+        document.getElementById('modalTitle').innerText = matchInfo ? `SERIES RECAP: TEAM ${tA.id} VS TEAM ${tB.id}` : `PRE-MATCH: TEAM ${tA.id} VS TEAM ${tB.id}`;
         document.getElementById('labelA').innerText = `TEAM ${tA.id}`;
         document.getElementById('labelB').innerText = `TEAM ${tB.id}`;
         document.getElementById('barA').style.width = probA + "%";
@@ -614,8 +580,7 @@
         const players = [{n: tA.p1, r: tA.r1}, {n: tA.p2, r: tA.r2}, {n: tB.p1, r: tB.r1}, {n: tB.p2, r: tB.r2}];
         
         document.getElementById('statBody').innerHTML = players.map(p => {
-            // If match is finished, use matchData; otherwise show 0 for current match stats
-            const s = hasResult ? (playerStats[p.n] || {g:0, a:0, s:0, d:0}) : {g:0, a:0, s:0, d:0};
+            const s = (hasSpecificStats && matchInfo.matchStats[p.n]) ? matchInfo.matchStats[p.n] : (playerStats[p.n] || {g:0, a:0, s:0, d:0});
             return `<tr><td style="text-align:left"><b>${p.n}</b><br><small style="color:var(--accent)">${p.r}</small></td><td>${s.g}</td><td>${s.a}</td><td>${s.s}</td><td>${s.d}</td></tr>`;
         }).join('');
         
