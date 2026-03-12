@@ -176,9 +176,9 @@
 
 <div class="news-ribbon">
     <div class="news-track">
-        <span class="news-item">Rocket League Tournament: Quarter-Finals Set</span>
-        <span class="news-item">Team 10 To face Team 11 in the quarter finals.</span>
-        <span class="news-item">Team 3 To face Team 7 in the quarter finals.</span>
+        <span class="news-item">Rocket League Tournament: Quarter-Finals Resulting</span>
+        <span class="news-item">Team 11 defeats Team 10 to advance!</span>
+        <span class="news-item">Team 3 defeats Team 7 in a high-scoring series!</span>
         <span class="news-item">Team 1 To face Team 15 in the quarter finals.</span>
         <span class="news-item">Team 2 defeats Team 4 to reach the Semi-Finals!</span>
     </div>
@@ -209,8 +209,8 @@
 
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
-            <p style="font-size: 1rem; color: #fff;">Round of 16 is DONE!</p>
-            <p style="font-size: 0.85rem; color: #666;">Quarter finals are set to start TODAY!.</p>
+            <p style="font-size: 1rem; color: #fff;">Quarters are underway!</p>
+            <p style="font-size: 0.85rem; color: #666;">Teams 2, 3, and 11 have secured their spots in the Semi-Finals.</p>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
@@ -246,14 +246,14 @@
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">QUARTERS</div>
                 <div class="tree-match"><div class="tree-team">Team 1</div><div class="tree-team">Team 15</div></div>
-                <div class="tree-match"><div class="tree-team">Team 4</div><div class="tree-team">Team 2</div></div>
-                <div class="tree-match"><div class="tree-team">Team 3</div><div class="tree-team">Team 7</div></div>
-                <div class="tree-match"><div class="tree-team">Team 10</div><div class="tree-team">Team 11</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 2</div><div class="tree-team">Team 4</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 3</div><div class="tree-team">Team 7</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 11</div><div class="tree-team">Team 10</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">SEMIS</div>
                 <div class="tree-match"><div class="tree-team">Team 2</div><div class="tree-team">TBD</div></div>
-                <div class="tree-match"><div class="tree-team">TBD</div><div class="tree-team">TBD</div></div>
+                <div class="tree-match"><div class="tree-team">Team 3</div><div class="tree-team">Team 11</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="color: #cd7f32; font-size: 0.5rem;">3RD PLACE</div>
@@ -349,7 +349,7 @@
 <script>
     const teams = [
         { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", form: ["L", "W", "L"], streak: 0 },
-        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", form: ["W", "L", "W"], streak: 1 },
+        { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", form: ["W", "L", "W", "L"], streak: 0 },
         { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", form: ["L", "L"], streak: 0 },
         { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", form: ["W", "W"], streak: 2 },
         { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
@@ -357,18 +357,18 @@
         { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", form: ["L", "L"], streak: 0 },
         { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion I", p2: "Moath Birier", r2: "Unranked", form: ["W", "W"], streak: 2 },
         { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
-        { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Eyad Gomah", r2: "Silver III", form: ["L", "W", "W"], streak: 2 },
+        { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Eyad Gomah", r2: "Silver III", form: ["L", "W", "W", "L"], streak: 0 },
         { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold", form: ["L", "L"], streak: 0 },
-        { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked", form: ["W", "W"], streak: 2 },
+        { id: 3, p1: "Osama Amjad", r1: "Champion II", p2: "Ramez Al Issa", r2: "Unranked", form: ["W", "W", "W"], streak: 3 },
         { id: 14, p1: "Hamza", r1: "Gold II", p2: "Ammar Mustafa", r2: "Gold I", form: ["L", "L"], streak: 0 },
         { id: 2, p1: "Zainuddin", r1: "Grand Champion", p2: "Shahryar", r2: "Unranked", form: ["W", "W", "W"], streak: 3 },
         { id: 16, p1: "Hamza Mostafa", r1: "Gold II", p2: "Ahmad Tabiyyeh", r2: "Gold II", form: ["L", "W", "L"], streak: 0 },
-        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", form: ["W", "L", "W"], streak: 1 }
+        { id: 11, p1: "Zain Rafat", r1: "Platinum", p2: "Anwar Bechara", r2: "Silver III", form: ["W", "L", "W", "W"], streak: 2 }
     ];
 
     const playerStats = {
-        "Mujtaba Umer": { g: 8, a: 1, s: 9, d: 2, cs: 0 },
-        "Mohammed Samer": { g: 1, a: 1, s: 1, d: 1, cs: 0 },
+        "Mujtaba Umer": { g: 16, a: 1, s: 12, d: 4, cs: 0 },
+        "Mohammed Samer": { g: 1, a: 3, s: 2, d: 5, cs: 0 },
         "Qamar": { g: 6, a: 1, s: 1, d: 1, cs: 0 },
         "Rehan Naveed": { g: 6, a: 0, s: 0, d: 1, cs: 0 },
         "Ammar Mirza": { g: 9, a: 1, s: 1, d: 0, cs: 1 },
@@ -379,8 +379,8 @@
         "Syed Umer": { g: 0, a: 0, s: 0, d: 0, cs: 0 },
         "Obada": { g: 24, a: 1, s: 18, d: 13, cs: 0 }, 
         "Younes Hussam": { g: 2, a: 2, s: 3, d: 1, cs: 0 },
-        "Anwar Bechara": { g: 4, a: 1, s: 0, d: 2, cs: 0 },
-        "Zain Rafat": { g: 6, a: 2, s: 6, d: 2, cs: 0 },
+        "Anwar Bechara": { g: 5, a: 2, s: 0, d: 5, cs: 0 },
+        "Zain Rafat": { g: 13, a: 3, s: 13, d: 4, cs: 0 },
         "Ahmad Tabiyyeh": { g: 5, a: 4, s: 2, d: 3, cs: 0 },
         "Hamza Mostafa": { g: 5, a: 2, s: 5, d: 2, cs: 0 },
         "Ali Al Amoudi": { g: 11, a: 1, s: 4, d: 2, cs: 1 },
@@ -393,10 +393,10 @@
         "Ammar Mustafa": { g: 1, a: 0, s: 4, d: 1, cs: 0 },
         "Mahmoud Mousa": { g: 3, a: 1, s: 3, d: 4, cs: 0 },
         "Ahmed Firdawi": { g: 3, a: 1, s: 2, d: 1, cs: 0 },
-        "Ahmed Gomah": { g: 4, a: 1, s: 10, d: 0, cs: 0 },
-        "Eyad Gomah": { g: 3, a: 0, s: 3, d: 0, cs: 0 },
-        "Osama Amjad": { g: 16, a: 1, s: 4, d: 1, cs: 0 },
-        "Ramez Al Issa": { g: 1, a: 2, s: 0, d: 1, cs: 0 },
+        "Ahmed Gomah": { g: 7, a: 1, s: 20, d: 1, cs: 0 },
+        "Eyad Gomah": { g: 5, a: 1, s: 6, d: 4, cs: 0 },
+        "Osama Amjad": { g: 30, a: 2, s: 10, d: 4, cs: 0 },
+        "Ramez Al Issa": { g: 2, a: 2, s: 0, d: 2, cs: 0 },
         "Khaled Al Shummari": { g: 3, a: 1, s: 4, d: 0, cs: 0 },
         "Anas Mohammad": { g: 1, a: 2, s: 3, d: 0, cs: 0 }
     };
@@ -422,6 +422,28 @@
                 "Obada": { g: 6, a: 0, s: 7, d: 4 },
                 "Younes Hussam": { g: 0, a: 1, s: 1, d: 0 }
             }
+        },
+        "3v7": { 
+            scores: [[7, 6], [6, 2], ["-", "-"]], 
+            mvp: "Osama Amjad - Team 3", 
+            highlights: "https://drive.google.com/drive/folders/1dvlKH1o8VyuO26M9WvH8YP5CQlzUaA82?usp=drive_link",
+            matchStats: {
+                "Osama Amjad": { g: 14, a: 1, s: 6, d: 3 },
+                "Ramez Al Issa": { g: 1, a: 0, s: 0, d: 1 },
+                "Mujtaba Umer": { g: 8, a: 0, s: 3, d: 2 },
+                "Mohammed Samer": { g: 0, a: 2, s: 1, d: 4 }
+            }
+        },
+        "10v11": { 
+            scores: [[1, 3], [2, 1], [2, 4]], 
+            mvp: "Zain Rafat - Team 11", 
+            highlights: "#",
+            matchStats: {
+                "Ahmed Gomah": { g: 3, a: 0, s: 10, d: 1 },
+                "Eyad Gomah": { g: 2, a: 1, s: 3, d: 4 },
+                "Zain Rafat": { g: 7, a: 1, s: 7, d: 2 },
+                "Anwar Bechara": { g: 1, a: 1, s: 0, d: 3 }
+            }
         }
     };
 
@@ -445,7 +467,6 @@
         resultsContainer.innerHTML = "";
         bracketList.innerHTML = "";
 
-        // 1. Populate Rosters and Full Stats
         [...teams].sort((a,b) => a.id - b.id).forEach(t => {
             const formHtml = t.form.map(f => `<span class="form-dot form-${f.toLowerCase()}"></span>`).join('');
             const streakHtml = t.streak > 1 ? `<span class="streak-fire">🔥 ${t.streak} STREAK</span>` : '';
@@ -457,7 +478,6 @@
             });
         });
 
-        // 2. Populate Bracket Tab with Highlights and MVP
         const bracketPairs = [ [1, 15], [4, 2], [3, 7], [10, 11] ];
         bracketPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
@@ -497,8 +517,7 @@
             bracketList.appendChild(group);
         });
 
-        // 3. Populate Past Results Tab
-        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [4, 2] ];
+        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [4, 2], [3, 7], [10, 11] ];
         originalPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
             const tA = teams[idxA], tB = teams[idxB];
