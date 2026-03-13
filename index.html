@@ -176,10 +176,10 @@
 
 <div class="news-ribbon">
     <div class="news-track">
-        <span class="news-item">Rocket League Tournament: Quarter-Finals Resulting</span>
+        <span class="news-item">Rocket League Tournament: Quarter-Finals Resultsing</span>
+        <span class="news-item">Team 1 defeats Team 15 in a close 2-1 series!</span>
         <span class="news-item">Team 11 defeats Team 10 to advance!</span>
         <span class="news-item">Team 3 defeats Team 7 in a high-scoring series!</span>
-        <span class="news-item">Team 1 To face Team 15 in the quarter finals.</span>
         <span class="news-item">Team 2 defeats Team 4 to reach the Semi-Finals!</span>
     </div>
 </div>
@@ -202,22 +202,51 @@
     
     <div id="home" class="tab-content active">
 
+<div class="vote-banner" style="background:#111; padding:20px; border-radius:10px; text-align:center; width:300px; margin:auto;">
+
+    <div style="font-family: var(--text-head); font-size:0.6rem; color:var(--upset); letter-spacing:2px; margin-bottom:5px;">
+        LIVE VOTING OPEN
+    </div>
+
+    <h2 style="margin:0; font-size:1.4rem; color:#fff;">
+        PLAYER OF THE ROUND
+    </h2>
+
+    <p style="color:#666; font-size:0.8rem; margin:10px 0;">
+        Who was the standout performer in the Quarter-Finals? Cast your vote now!
+    </p>
+
+    <a href="https://forms.gle/NGrYpU3y6yT3tuScA" target="_blank"
+       style="display:inline-block;
+              padding:12px 25px;
+              border:2px solid #ff4d4d;
+              border-radius:8px;
+              background:#ff4d4d;
+              color:#fff;
+              text-decoration:none;
+              font-weight:bold;
+              font-size:0.9rem;">
+        Vote Now
+    </a>
+
+</div>
+
         <h2>Tournament News</h2>
         <div style="background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
-            <p style="font-size: 1rem; color: #fff;">Quarters are underway!</p>
-            <p style="font-size: 0.85rem; color: #666;">Teams 2, 3, and 11 have secured their spots in the Semi-Finals.</p>
+            <p style="font-size: 1rem; color: #fff;">Quarters Finished - Semi-Finals Set!</p>
+            <p style="font-size: 0.85rem; color: #666;">Teams 1, 2, 3, and 11 are your final four.</p>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
             <div style="background: rgba(0,229,255,0.03); padding: 30px; border-radius: 15px; border: 1px dashed var(--border); text-align: center; backdrop-filter: blur(5px);">
-                <h3 style="font-family: var(--text-head); font-size: 0.8rem; color: var(--accent);">PREVIOUS MVP</h3>
-                <p id="potr-display" style="color: #fff; font-family: var(--text-head); font-size: 0.9rem;">Osama</p>
+                <h3 style="font-family: var(--text-head); font-size: 0.8rem; color: var(--accent);">Previous Player of the round</h3>
+                <p id="potr-display" style="color: #fff; font-family: var(--text-head); font-size: 0.9rem;">Obada Amjad</p>
             </div>
         </div>
     </div>
 
     <div id="bracket" class="tab-content">
-        <h2>Quarter-Finals (Bo3)</h2>
+        <h2>Semi-Finals (Bo3)</h2>
         <div id="bracket-list">
             </div>
 
@@ -236,15 +265,15 @@
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">QUARTERS</div>
-                <div class="tree-match"><div class="tree-team">Team 1</div><div class="tree-team">Team 15</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 1</div><div class="tree-team">Team 15</div></div>
                 <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 2</div><div class="tree-team">Team 4</div></div>
                 <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 3</div><div class="tree-team">Team 7</div></div>
                 <div class="tree-match"><div class="tree-team" style="color:var(--accent)">Team 11</div><div class="tree-team">Team 10</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="font-size: 0.5rem; color:#444">SEMIS</div>
-                <div class="tree-match"><div class="tree-team">Team 2</div><div class="tree-team">TBD</div></div>
-                <div class="tree-match"><div class="tree-team">Team 3</div><div class="tree-team">Team 11</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--upcoming)">Team 1</div><div class="tree-team" style="color:var(--upcoming)">Team 2</div></div>
+                <div class="tree-match"><div class="tree-team" style="color:var(--upcoming)">Team 3</div><div class="tree-team" style="color:var(--upcoming)">Team 11</div></div>
             </div>
             <div class="tree-column">
                 <div class="tree-label" style="color: #cd7f32; font-size: 0.5rem;">3RD PLACE</div>
@@ -342,11 +371,11 @@
         { id: 12, p1: "Qamar", r1: "Platinum", p2: "Rehan Naveed", r2: "Platinum", form: ["L", "W", "L"], streak: 0 },
         { id: 7, p1: "Mujtaba Umer", r1: "Diamond I", p2: "Mohammed Samer", r2: "Bronze III", form: ["W", "L", "W", "L"], streak: 0 },
         { id: 9, p1: "Ahmad Ziyad", r1: "Platinum III", p2: "Saif Yazan", r2: "Silver I", form: ["L", "L"], streak: 0 },
-        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", form: ["W", "W"], streak: 2 },
+        { id: 15, p1: "Ammar Mirza", r1: "Gold II", p2: "Ali Al Bachari", r2: "Gold I", form: ["W", "W", "L"], streak: 0 },
         { id: 5, p1: "Rafay", r1: "Champion I", p2: "Syed Umer", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
         { id: 4, p1: "Obada", r1: "Champion I", p2: "Younes Hussam", r2: "Unranked", form: ["L", "W", "W", "L"], streak: 0 },
         { id: 8, p1: "Omeir", r1: "Platinum III", p2: "Modasser Sameh", r2: "Silver", form: ["L", "L"], streak: 0 },
-        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion I", p2: "Moath Birier", r2: "Unranked", form: ["W", "W"], streak: 2 },
+        { id: 1, p1: "Ali Al Amoudi", r1: "Grand Champion I", p2: "Moath Birier", r2: "Unranked", form: ["W", "W", "W"], streak: 3 },
         { id: 6, p1: "Mahmoud Mousa", r1: "Diamond I", p2: "Ahmed Firdawi", r2: "Bronze I", form: ["W", "L", "L"], streak: 0 },
         { id: 10, p1: "Ahmed Gomah", r1: "Platinum II", p2: "Eyad Gomah", r2: "Silver III", form: ["L", "W", "W", "L"], streak: 0 },
         { id: 13, p1: "Anas Mohammad", r1: "Gold III", p2: "Khaled Al Shummari", r2: "Gold", form: ["L", "L"], streak: 0 },
@@ -362,8 +391,8 @@
         "Mohammed Samer": { g: 1, a: 3, s: 2, d: 5, cs: 0 },
         "Qamar": { g: 6, a: 1, s: 1, d: 1, cs: 0 },
         "Rehan Naveed": { g: 6, a: 0, s: 0, d: 1, cs: 0 },
-        "Ammar Mirza": { g: 9, a: 1, s: 1, d: 0, cs: 1 },
-        "Ali Al Bachari": { g: 2, a: 1, s: 1, d: 1, cs: 1 },
+        "Ammar Mirza": { g: 16, a: 3, s: 1, d: 2, cs: 1 },
+        "Ali Al Bachari": { g: 6, a: 1, s: 8, d: 1, cs: 1 },
         "Ahmad Ziyad": { g: 2, a: 1, s: 6, d: 1, cs: 0 },
         "Saif Yazan": { g: 1, a: 0, s: 0, d: 0, cs: 0 },
         "Rafay": { g: 9, a: 0, s: 7, d: 3, cs: 0 },
@@ -374,8 +403,8 @@
         "Zain Rafat": { g: 13, a: 3, s: 13, d: 4, cs: 0 },
         "Ahmad Tabiyyeh": { g: 5, a: 4, s: 2, d: 3, cs: 0 },
         "Hamza Mostafa": { g: 5, a: 2, s: 5, d: 2, cs: 0 },
-        "Ali Al Amoudi": { g: 11, a: 1, s: 4, d: 2, cs: 1 },
-        "Moath Birier": { g: 1, a: 0, s: 0, d: 1, cs: 1 },
+        "Ali Al Amoudi": { g: 34, a: 2, s: 8, d: 4, cs: 1 },
+        "Moath Birier": { g: 2, a: 3, s: 0, d: 2, cs: 1 },
         "Omeir": { g: 1, a: 1, s: 2, d: 1, cs: 0 },
         "Modasser Sameh": { g: 2, a: 0, s: 4, d: 0, cs: 0 },
         "Shahryar": { g: 7, a: 3, s: 18, d: 3, cs: 1 }, 
@@ -398,11 +427,22 @@
         "12v7": { scores: [[3, 4], [7, 3], [1, 2]], mvp: "Mujtaba Umer - Team 7", highlights: "https://drive.google.com/drive/folders/1Ufm89D6uM_9IEk2AvA_wW2dYT0aWLq0t?usp=sharing" },
         "9v15": { scores: [[3, 4], [0, 7], ["-", "-"]], mvp: "Ammar Mirza - Team 15", highlights: "https://drive.google.com/drive/folders/15TbyCdD4gDt3IECUqnEhMjXrX-wuphIX?usp=drive_link" },
         "5v4": { scores: [[5, 3], [2, 4], [2, 7]], mvp: "Obada - Team 4", highlights: "https://drive.google.com/drive/folders/1hEO8HBx1qPknBHQwB8NED3Bx-yT54rUQ?usp=drive_link" },
-        "16v11": { scores: [[2, 5], [5, 4], [3, 4]], mvp: "Zain Rafat - Team 11", highlights: "https://drive.google.com/drive/folders/1WKLPbbyANkm68MHDFt_he5-5f_prc6QX?usp=drive_link" },
+        "16v11": { scores: [[2, 5], [5, 4], [3, 4]], mvp: "Zain Rafat - Team 11", highlights: "https://drive.google.com/drive/folders/1WKLPbbyANkm68MHDFt_he5-5f_prc6QX?usp=even_link" },
         "8v1": { scores: [[2, 5], [1, 7], ["-", "-"]], mvp: "Ali Al Amoudi - Team 1", highlights: "https://drive.google.com/drive/folders/12YxIx1YytW2yY_9QclIcIqBqTNgPPJW8?usp=drive_link" },
         "14v2": { scores: [[0, 4], [1, 8], ["-", "-"]], mvp: "Shahryar - Team 2", highlights: "#" },
         "6v10": { scores: [[4, 0], [1, 2], [1, 3]], mvp: "Ahmed Gomah - Team 10", highlights: "#" },
         "13v3": { scores: [[3, 7], [1, 10], ["-", "-"]], mvp: "Osama - Team 3", highlights: "#" },
+        "1v15": { 
+            scores: [[8, 2], [6, 7], [10, 2]], 
+            mvp: "Ali Al Amoudi - Team 1", 
+            highlights: "#",
+            matchStats: {
+                "Ali Al Amoudi": { g: 23, a: 1, s: 4, d: 2 },
+                "Moath Birier": { g: 1, a: 3, s: 0, d: 1 },
+                "Ali Al Bachari": { g: 4, a: 0, s: 7, d: 0 },
+                "Ammar Mirza": { g: 7, a: 2, s: 0, d: 2 }
+            }
+        },
         "4v2": { 
             scores: [[3, 4], [3, 2], [0, 2]], 
             mvp: "Zainuddin - Team 2", 
@@ -469,7 +509,8 @@
             });
         });
 
-        const bracketPairs = [ [1, 15], [4, 2], [3, 7], [10, 11] ];
+        // Semi-final matchups in the Bracket tab
+        const bracketPairs = [ [3, 11], [1, 2] ];
         bracketPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
             const tA = teams[idxA], tB = teams[idxB];
@@ -508,7 +549,8 @@
             bracketList.appendChild(group);
         });
 
-        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [4, 2], [3, 7], [10, 11] ];
+        // Quarter final results moved into Results tab
+        const originalPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [1, 15], [4, 2], [3, 7], [10, 11] ];
         originalPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
             const tA = teams[idxA], tB = teams[idxB];
