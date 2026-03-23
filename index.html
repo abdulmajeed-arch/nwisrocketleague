@@ -294,9 +294,9 @@
     <div id="awards" class="tab-content">
         <h2>Tournament Honors</h2>
         <div class="awards-grid">
-            <div class="award-card gold-border"><span class="award-icon">🏆</span><h4>CHAMPIONS</h4><p>Gold Medals</p></div>
-            <div class="award-card silver-border"><span class="award-icon">🥈</span><h4>RUNNER UP</h4><p>Silver Medals</p></div>
-            <div class="award-card bronze-border"><span class="award-icon">🥉</span><h4>3RD PLACE</h4><p>Bronze Medals</p></div>
+            <div class="award-card gold-border"><span class="award-icon">醇</span><h4>CHAMPIONS</h4><p>Gold Medals</p></div>
+            <div class="award-card silver-border"><span class="award-icon">･/span><h4>RUNNER UP</h4><p>Silver Medals</p></div>
+            <div class="award-card bronze-border"><span class="award-icon">･/span><h4>3RD PLACE</h4><p>Bronze Medals</p></div>
         </div>
         <h3 style="font-family: var(--text-head); font-size: 0.7rem; color: var(--accent); text-align: center; margin-top: 40px;">INDIVIDUAL MERITS</h3>
         <div class="awards-grid">
@@ -493,7 +493,7 @@
 
         [...teams].sort((a,b) => a.id - b.id).forEach(t => {
             const formHtml = t.form.map(f => `<span class="form-dot form-${f.toLowerCase()}"></span>`).join('');
-            const streakHtml = t.streak > 1 ? `<span class="streak-fire">🔥 ${t.streak} STREAK</span>` : '';
+            const streakHtml = t.streak > 1 ? `<span class="streak-fire">櫨 ${t.streak} STREAK</span>` : '';
             rosterList.innerHTML += `<tr><td style="color:var(--accent); font-weight:bold; padding-left:20px;">Team ${t.id}${streakHtml}</td><td style="text-align:left;">${t.p1} <span style="font-size:0.6rem; color:#666;">[${t.r1}]</span><br>${t.p2} <span style="font-size:0.6rem; color:#666;">[${t.r2}]</span></td><td>${formHtml}</td></tr>`;
             
             [t.p1, t.p2].forEach(p => {
@@ -502,7 +502,7 @@
             });
         });
 
-        // Final and 3rd Place Matchups in Bracket Tab
+        // Final and 3rd Place Matchups in Bracket Tab (Bo5 format)
         const finalPairs = [ [2, 11], [1, 3] ];
         finalPairs.forEach((pair, pIdx) => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
@@ -513,12 +513,12 @@
             group.className = 'match-group';
             
             let innerHTML = `
-                <div class="status-badge">${pIdx === 0 ? '3RD PLACE MATCH' : 'GRAND FINAL'}</div>
+                <div class="status-badge">${pIdx === 0 ? '3RD PLACE MATCH (Bo5)' : 'GRAND FINAL (Bo5)'}</div>
                 <div onclick="openModalByIds(${idxA}, ${idxB}, ${probA})">
                     <div class="match-group-title">TEAM ${tA.id} VS TEAM ${tB.id}</div>
-                    ${[[0,0],[0,0],[0,0]].map((s, idx) => `
+                    ${[[0,0],[0,0],[0,0],[0,0],[0,0]].map((s, idx) => `
                         <div class="bo3-match">
-                            <span class="bo3-label">MATCH ${idx === 0 ? 'ONE' : idx === 1 ? 'TWO' : 'THREE'}</span>
+                            <span class="bo3-label">MATCH ${idx === 0 ? 'ONE' : idx === 1 ? 'TWO' : idx === 2 ? 'THREE' : idx === 3 ? 'FOUR' : 'FIVE'}</span>
                             <div class="bo3-score"><span>${s[0]}</span><span style="color:#222; font-size:0.6rem;">VS</span><span>${s[1]}</span></div>
                         </div>
                     `).join('')}
@@ -530,7 +530,7 @@
             bracketList.appendChild(group);
         });
 
-        // Past Results (Now including Semi-Finals)
+        // Past Results
         const pastPairs = [ [12, 7], [9, 15], [5, 4], [8, 1], [6, 10], [13, 3], [14, 2], [16, 11], [1, 15], [4, 2], [3, 7], [10, 11], [1, 2], [3, 11] ];
         pastPairs.forEach(pair => {
             const idxA = findTeamIdx(pair[0]), idxB = findTeamIdx(pair[1]);
